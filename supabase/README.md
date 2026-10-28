@@ -26,7 +26,7 @@ Solo se guarda apodo, curso, XP, racha, logros y resultados por misión. No se g
 
 ## Tutor IA (función `tutor`)
 
-- `functions/tutor/index.ts`, publicada en kubi-dev. Usa **Claude Haiku 5.5** (US$0,10 por millón de tokens de entrada y US$0,50 de salida; una pista cuesta del orden de US$0,0002).
+- `functions/tutor/index.ts`, publicada en kubi-dev. Usa **Claude Haiku 5.5** (US$0,10 por millón de tokens de entrada y US$0,50 de salida; una pista cuesta cerca de US$0,0003, medido el 28-10-2026).
 - Solo recibe el ejercicio (nivel, habilidad, enunciado, alternativas, respuesta correcta, pasos y, para explicar un error, la alternativa elegida). Nunca el apodo ni el progreso. Exige una sesión de la app.
 - Topes: **US$10 al mes** en total (`KUBI_TUTOR_TOPE_MES_USD`) y **40 solicitudes por estudiante al día** (`KUBI_TUTOR_MAX_DIA`). Los lleva la migración `20261028000000_uso_tutor.sql` (tablas sin acceso para la app; solo la función del servidor).
 - Si no hay clave, se acabó el presupuesto, no hay red o la pista revela la respuesta, la app usa las pistas y explicaciones sin IA.

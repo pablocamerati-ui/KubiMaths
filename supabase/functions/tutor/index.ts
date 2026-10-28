@@ -13,8 +13,9 @@ const MODELO = 'claude-haiku-5-5';
 // Precio de Claude Haiku 5.5 (US$ por millón de tokens, prompts bajo 100.000 tokens).
 const PRECIO_ENTRADA = 0.1 / 1_000_000;
 const PRECIO_SALIDA = 0.5 / 1_000_000;
-const MAX_TOKENS = 350;
-const RESERVA_USD = 0.001; // cubre de sobra una solicitud (≈ 1.500 de entrada + 350 de salida)
+// Holgura amplia: el modelo puede razonar antes de responder y esos tokens también cuentan.
+const MAX_TOKENS = 1200;
+const RESERVA_USD = 0.002; // cubre de sobra una solicitud (≈ 1.500 de entrada + 1.200 de salida)
 const TOPE_MES_USD = Number(Deno.env.get('KUBI_TUTOR_TOPE_MES_USD') ?? '10');
 const MAX_DIA = Number(Deno.env.get('KUBI_TUTOR_MAX_DIA') ?? '40');
 
@@ -128,7 +129,11 @@ Deno.serve(async (req) => {
       .join('\n')
       .trim();
     if (!salida) return responder({ error: 'ia' }, 502);
-    return responder({ texto: salida.slice(0, 900) });
+    // Si se cortó por largo, se queda hasta la última oración completa.
+    const completa =
+      datos.stop_reason === 'max_tokens' ? salida.slice(0, Math.max(salida.lastIndexOf('.'), 0) + 1) : salida;
+    if (!completa.trim()) return responder({ error: 'ia' }, 502);
+    return responder({ texto: completa.slice(0, 900) });
   } catch {
     return responder({ error: 'ia' }, 502);
   } finally {
