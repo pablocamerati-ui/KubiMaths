@@ -1,0 +1,177 @@
+import { Mission } from '../types';
+
+/**
+ * Misión 3 — Porcentajes (7.º básico).
+ * Porcentaje de una cantidad, relación con fracciones y problemas de
+ * descuentos, aumentos y proporciones.
+ */
+export const misionPorcentajes7b: Mission = {
+  id: 'porcentajes-7b',
+  titulo: 'Porcentajes',
+  nivel: '7.º básico',
+  unidad: 'Unidad 1 · Números',
+  corazonesIniciales: 3,
+  xpPorCorrecta: 10,
+  xpBonoCompletar: 20,
+  preguntas: [
+    {
+      id: 'p7-01',
+      habilidad: 'Porcentaje de una cantidad',
+      enunciado: '¿Cuánto es el 25 % de 80?',
+      expresion: '25 % de 80',
+      opciones: [
+        { id: 'a', valor: 20 },
+        { id: 'b', valor: 25, porQue: 'El 25 % no es 25 unidades: es la cuarta parte de 80.' },
+        { id: 'c', valor: 55, porQue: 'Restaste 80 − 25. El 25 % de 80 es 25/100 · 80.' },
+        { id: 'd', valor: 32, porQue: '32 es el 40 % de 80. El 25 % es la cuarta parte.' },
+      ],
+      correcta: 'a',
+      calcular: () => (25 / 100) * 80,
+      pasos: [
+        '25 % = 25/100 = 1/4.',
+        'La cuarta parte de 80 es 80 : 4 = 20.',
+        'El 25 % de 80 es 20.',
+      ],
+      pista: '25 % es lo mismo que una cuarta parte.',
+    },
+    {
+      id: 'p7-02',
+      habilidad: 'Porcentaje como fracción',
+      enunciado: 'Escribe 3/5 como porcentaje.',
+      expresion: '3/5',
+      unidad: '%',
+      opciones: [
+        { id: 'a', valor: 35, porQue: 'No basta con juntar los números. Convierte 3/5 a una fracción con denominador 100.' },
+        { id: 'b', valor: 30, porQue: '30 % es 3/10. Aquí el denominador es 5: 3/5 = 60/100.' },
+        { id: 'c', valor: 60 },
+        { id: 'd', valor: 53, porQue: 'Invertir los números no sirve. Amplifica 3/5 por 20 para llegar a centésimos.' },
+      ],
+      correcta: 'c',
+      calcular: () => (3 / 5) * 100,
+      pasos: [
+        'Un porcentaje es una fracción con denominador 100.',
+        'Amplificamos por 20: 3/5 = 60/100.',
+        '60/100 = 60 %.',
+      ],
+      pista: '¿Por cuánto multiplicas el 5 para llegar a 100?',
+    },
+    {
+      id: 'p7-03',
+      habilidad: 'Qué porcentaje representa',
+      enunciado: 'En un curso, 15 de 60 estudiantes practican fútbol. ¿Qué porcentaje del curso practica fútbol?',
+      unidad: '%',
+      opciones: [
+        { id: 'a', valor: 15, porQue: '15 es la cantidad de estudiantes, no el porcentaje. Calcula 15/60 y llévalo a centésimos.' },
+        { id: 'b', valor: 25 },
+        { id: 'c', valor: 45, porQue: '45 son los estudiantes que no practican fútbol. Se pide el porcentaje que sí practica.' },
+        { id: 'd', valor: 40, porQue: 'Revisa la división: 15/60 = 1/4 = 0,25.' },
+      ],
+      correcta: 'b',
+      calcular: () => (15 / 60) * 100,
+      pasos: [
+        'La fracción del curso es 15/60.',
+        'Simplificamos: 15/60 = 1/4 = 0,25.',
+        '0,25 = 25 %.',
+      ],
+      pista: '¿Qué fracción de 60 es 15? Simplifícala.',
+    },
+    {
+      id: 'p7-04',
+      habilidad: 'Porcentaje en contexto',
+      enunciado: 'En un curso de 40 estudiantes, el 30 % llega en metro. ¿Cuántos estudiantes llegan en metro?',
+      opciones: [
+        { id: 'a', valor: 30, porQue: 'El 30 % no son 30 estudiantes: es 30/100 de 40.' },
+        { id: 'b', valor: 10, porQue: 'Calculaste el 25 % (la cuarta parte). El 30 % de 40 es 3 · 4 = 12.' },
+        { id: 'c', valor: 28, porQue: '28 son los que no llegan en metro (70 %). Se pide el 30 %.' },
+        { id: 'd', valor: 12 },
+      ],
+      correcta: 'd',
+      calcular: () => (30 / 100) * 40,
+      pasos: [
+        'El 10 % de 40 es 4.',
+        'El 30 % es tres veces eso: 3 · 4 = 12.',
+        '12 estudiantes llegan en metro.',
+      ],
+      pista: 'Calcula primero el 10 % de 40.',
+    },
+    {
+      id: 'p7-05',
+      habilidad: 'Descuentos',
+      enunciado: 'Una polera cuesta $12.000 y tiene un 20 % de descuento. ¿Cuánto pagas?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 2400, porQue: '$2.400 es el descuento. Hay que restarlo al precio: 12.000 − 2.400.' },
+        { id: 'b', valor: 9600 },
+        { id: 'c', valor: 11980, porQue: 'El 20 % no son $20: es 20/100 de $12.000, o sea $2.400.' },
+        { id: 'd', valor: 10000, porQue: 'Revisa el descuento: el 20 % de 12.000 es 2.400, no 2.000.' },
+      ],
+      correcta: 'b',
+      calcular: () => 12000 - (20 / 100) * 12000,
+      pasos: [
+        'El 10 % de $12.000 es $1.200, así que el 20 % es $2.400.',
+        'Precio final: $12.000 − $2.400 = $9.600.',
+        'Otra forma: pagas el 80 %: 0,8 · 12.000 = 9.600.',
+      ],
+      pista: 'Calcula cuánto es el descuento y réstalo al precio.',
+    },
+    {
+      id: 'p7-06',
+      habilidad: 'Aumentos',
+      enunciado: 'Un celular costaba $200.000 y su precio subió un 10 %. ¿Cuál es el nuevo precio?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 20000, porQue: '$20.000 es solo el aumento. Hay que sumarlo al precio original.' },
+        { id: 'b', valor: 210000, porQue: 'El 10 % de $200.000 es $20.000, no $10.000.' },
+        { id: 'c', valor: 220000 },
+        { id: 'd', valor: 180000, porQue: 'El precio subió, así que hay que sumar el 10 %, no restarlo.' },
+      ],
+      correcta: 'c',
+      calcular: () => 200000 + (10 / 100) * 200000,
+      pasos: [
+        'El 10 % de $200.000 es $20.000.',
+        'Nuevo precio: $200.000 + $20.000 = $220.000.',
+        'Otra forma: 110 % del precio: 1,1 · 200.000 = 220.000.',
+      ],
+      pista: 'El 10 % de una cantidad es dividirla por 10.',
+    },
+    {
+      id: 'p7-07',
+      habilidad: 'Cantidad total desde un porcentaje',
+      enunciado: 'El 50 % de un número es 36. ¿Cuál es el número?',
+      opciones: [
+        { id: 'a', valor: 18, porQue: '18 es el 50 % de 36. Aquí 36 ya es la mitad del número.' },
+        { id: 'b', valor: 36, porQue: '36 es solo la mitad. El número completo es el doble.' },
+        { id: 'c', valor: 86, porQue: 'Sumaste 50 + 36. Si 36 es la mitad, el total es 2 · 36.' },
+        { id: 'd', valor: 72 },
+      ],
+      correcta: 'd',
+      calcular: () => 36 / (50 / 100),
+      pasos: [
+        'El 50 % es la mitad del número.',
+        'Si la mitad es 36, el número completo es 2 · 36.',
+        'El número es 72.',
+      ],
+      pista: '50 % es la mitad. ¿De qué número 36 es la mitad?',
+    },
+    {
+      id: 'p7-08',
+      habilidad: 'Cálculo mental del 10 %',
+      enunciado: '¿Cuánto es el 10 % de 350?',
+      expresion: '10 % de 350',
+      opciones: [
+        { id: 'a', valor: 3.5, porQue: 'Corriste la coma dos lugares; eso es el 1 %. El 10 % es dividir por 10.' },
+        { id: 'b', valor: 35 },
+        { id: 'c', valor: 340, porQue: 'Restaste 350 − 10. El 10 % de 350 es 350 : 10.' },
+        { id: 'd', valor: 10, porQue: 'El 10 % no son 10 unidades: es la décima parte de 350.' },
+      ],
+      correcta: 'b',
+      calcular: () => (10 / 100) * 350,
+      pasos: [
+        'El 10 % es la décima parte: 10/100 = 1/10.',
+        '350 : 10 = 35.',
+        'El 10 % de 350 es 35.',
+      ],
+      pista: 'El 10 % de un número es su décima parte.',
+    },
+  ],
+};

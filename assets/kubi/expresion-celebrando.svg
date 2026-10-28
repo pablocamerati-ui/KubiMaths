@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-label="KUBI celebrando">
+<defs>
+<radialGradient id="eBody" cx="0.36" cy="0.28" r="0.85"><stop offset="0" stop-color="#9C80F8"></stop><stop offset="0.5" stop-color="#7954EE"></stop><stop offset="1" stop-color="#5338B4"></stop></radialGradient>
+<linearGradient id="eExt" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#8E70F5"></stop><stop offset="1" stop-color="#5F42C8"></stop></linearGradient>
+<linearGradient id="eLimb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8263F1"></stop><stop offset="1" stop-color="#5338B4"></stop></linearGradient>
+<radialGradient id="eFoot" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#6E50E0"></stop><stop offset="1" stop-color="#4A31A3"></stop></radialGradient>
+<radialGradient id="eCore" cx="0.45" cy="0.35" r="0.7"><stop offset="0" stop-color="#C9F7FC"></stop><stop offset="0.45" stop-color="#36D6E7"></stop><stop offset="1" stop-color="#1FAFC2"></stop></radialGradient>
+<radialGradient id="eGlow"><stop offset="0" stop-color="#36D6E7" stop-opacity="0.55"></stop><stop offset="1" stop-color="#36D6E7" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="eGold"><stop offset="0" stop-color="#FFCA58" stop-opacity="0.6"></stop><stop offset="1" stop-color="#FFCA58" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="eGround"><stop offset="0" stop-color="#20234E" stop-opacity="0.2"></stop><stop offset="1" stop-color="#20234E" stop-opacity="0"></stop></radialGradient>
+</defs>
+<ellipse cx="120" cy="256" rx="52" ry="7" fill="url(#eGround)"></ellipse>
+<path d="M34 28 Q34 40 46 40 Q34 40 34 52 Q34 40 22 40 Q34 40 34 28 Z" fill="#FFCA58"></path>
+<path d="M206 22 Q206 36 220 36 Q206 36 206 50 Q206 36 192 36 Q206 36 206 22 Z" fill="#FFCA58"></path>
+<path d="M226 114 Q226 122 234 122 Q226 122 226 130 Q226 122 218 122 Q226 122 226 114 Z" fill="#FFCA58"></path>
+<path d="M14 118 Q14 126 22 126 Q14 126 14 134 Q14 126 6 126 Q14 126 14 118 Z" fill="#FFCA58"></path>
+<rect x="64" y="10" width="8" height="14" rx="3" transform="rotate(25 68 17)" fill="#FFCA58"></rect>
+<rect x="166" y="6" width="8" height="14" rx="3" transform="rotate(-20 170 13)" fill="#36D6E7"></rect>
+<rect x="116" y="0" width="8" height="12" rx="3" transform="rotate(10 120 6)" fill="#FFCA58"></rect>
+<g transform="translate(0 -12)">
+<path d="M64 88 L78 40 Q84 22 95 35 L126 84 Z" fill="url(#eExt)"></path>
+<rect x="146" y="44" width="32" height="32" rx="9" transform="rotate(18 162 60)" fill="url(#eExt)"></rect>
+<rect x="87" y="204" width="20" height="36" rx="10" fill="url(#eLimb)"></rect>
+<rect x="133" y="204" width="20" height="36" rx="10" fill="url(#eLimb)"></rect>
+<ellipse cx="95" cy="243" rx="18" ry="9" fill="url(#eFoot)"></ellipse>
+<ellipse cx="145" cy="243" rx="18" ry="9" fill="url(#eFoot)"></ellipse>
+<path d="M52 138 Q34 112 40 82" fill="none" stroke="#7954EE" stroke-width="14" stroke-linecap="round"></path>
+<circle cx="41" cy="77" r="10" fill="url(#eLimb)"></circle>
+<path d="M188 138 Q206 112 200 82" fill="none" stroke="#7954EE" stroke-width="14" stroke-linecap="round"></path>
+<circle cx="199" cy="77" r="10" fill="url(#eLimb)"></circle>
+<rect x="40" y="66" width="160" height="152" rx="48" fill="url(#eBody)"></rect>
+<ellipse cx="100" cy="82" rx="38" ry="8" fill="#FFFFFF" opacity="0.14"></ellipse>
+<path d="M78 134 Q94 112 110 134" fill="none" stroke="#20234E" stroke-width="6" stroke-linecap="round"></path>
+<path d="M130 134 Q146 112 162 134" fill="none" stroke="#20234E" stroke-width="6" stroke-linecap="round"></path>
+<path d="M80 98 Q92 92 104 97" fill="none" stroke="#20234E" stroke-width="5" stroke-linecap="round"></path>
+<path d="M136 97 Q148 92 160 98" fill="none" stroke="#20234E" stroke-width="5" stroke-linecap="round"></path>
+<path d="M100 156 Q120 186 140 156 Z" fill="#20234E" stroke="#20234E" stroke-width="3" stroke-linejoin="round"></path>
+<circle cx="120" cy="197" r="28" fill="url(#eGlow)"></circle>
+<path d="M108 196 L115.5 186.5 L120 192 L124.5 186.5 L132 196 L120 209 Z" fill="url(#eCore)"></path>
+</g>
+</svg>

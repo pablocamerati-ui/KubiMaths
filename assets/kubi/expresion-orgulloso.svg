@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img" aria-label="KUBI orgulloso">
+<defs>
+<radialGradient id="eBody" cx="0.36" cy="0.28" r="0.85"><stop offset="0" stop-color="#9C80F8"></stop><stop offset="0.5" stop-color="#7954EE"></stop><stop offset="1" stop-color="#5338B4"></stop></radialGradient>
+<linearGradient id="eExt" x1="0" y1="0" x2="0.4" y2="1"><stop offset="0" stop-color="#8E70F5"></stop><stop offset="1" stop-color="#5F42C8"></stop></linearGradient>
+<linearGradient id="eLimb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8263F1"></stop><stop offset="1" stop-color="#5338B4"></stop></linearGradient>
+<radialGradient id="eFoot" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#6E50E0"></stop><stop offset="1" stop-color="#4A31A3"></stop></radialGradient>
+<radialGradient id="eCore" cx="0.45" cy="0.35" r="0.7"><stop offset="0" stop-color="#C9F7FC"></stop><stop offset="0.45" stop-color="#36D6E7"></stop><stop offset="1" stop-color="#1FAFC2"></stop></radialGradient>
+<radialGradient id="eGlow"><stop offset="0" stop-color="#36D6E7" stop-opacity="0.55"></stop><stop offset="1" stop-color="#36D6E7" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="eGold"><stop offset="0" stop-color="#FFCA58" stop-opacity="0.6"></stop><stop offset="1" stop-color="#FFCA58" stop-opacity="0"></stop></radialGradient>
+<radialGradient id="eGround"><stop offset="0" stop-color="#20234E" stop-opacity="0.2"></stop><stop offset="1" stop-color="#20234E" stop-opacity="0"></stop></radialGradient>
+</defs>
+<ellipse cx="120" cy="254" rx="66" ry="9" fill="url(#eGround)"></ellipse>
+<path d="M196 28 Q196 40 208 40 Q196 40 196 52 Q196 40 184 40 Q196 40 196 28 Z" fill="#FFCA58"></path>
+<path d="M36 46 Q36 53 43 53 Q36 53 36 60 Q36 53 29 53 Q36 53 36 46 Z" fill="#FFCA58"></path>
+<path d="M64 88 L78 40 Q84 22 95 35 L126 84 Z" fill="url(#eExt)"></path>
+<rect x="146" y="44" width="32" height="32" rx="9" transform="rotate(18 162 60)" fill="url(#eExt)"></rect>
+<rect x="87" y="204" width="20" height="38" rx="10" fill="url(#eLimb)"></rect>
+<rect x="133" y="204" width="20" height="38" rx="10" fill="url(#eLimb)"></rect>
+<ellipse cx="95" cy="245" rx="18" ry="9" fill="url(#eFoot)"></ellipse>
+<ellipse cx="145" cy="245" rx="18" ry="9" fill="url(#eFoot)"></ellipse>
+<rect x="40" y="66" width="160" height="152" rx="48" fill="url(#eBody)"></rect>
+<ellipse cx="100" cy="82" rx="38" ry="8" fill="#FFFFFF" opacity="0.14"></ellipse>
+<path d="M78 124 Q94 138 110 124" fill="none" stroke="#20234E" stroke-width="6" stroke-linecap="round"></path>
+<path d="M130 124 Q146 138 162 124" fill="none" stroke="#20234E" stroke-width="6" stroke-linecap="round"></path>
+<path d="M80 98 Q92 91 104 95" fill="none" stroke="#20234E" stroke-width="5" stroke-linecap="round"></path>
+<path d="M136 95 Q148 91 160 98" fill="none" stroke="#20234E" stroke-width="5" stroke-linecap="round"></path>
+<path d="M104 160 Q122 176 138 157" fill="none" stroke="#20234E" stroke-width="5" stroke-linecap="round"></path>
+<circle cx="120" cy="197" r="32" fill="url(#eGold)"></circle>
+<circle cx="120" cy="197" r="20" fill="url(#eGlow)"></circle>
+<path d="M108 196 L115.5 186.5 L120 192 L124.5 186.5 L132 196 L120 209 Z" fill="url(#eCore)"></path>
+<path d="M150 182 Q150 188 156 188 Q150 188 150 194 Q150 188 144 188 Q150 188 150 182 Z" fill="#FFCA58"></path>
+<path d="M90 201 Q90 206 95 206 Q90 206 90 211 Q90 206 85 206 Q90 206 90 201 Z" fill="#FFCA58"></path>
+<path d="M48 148 Q20 160 36 190" fill="none" stroke="#7954EE" stroke-width="14" stroke-linecap="round"></path>
+<circle cx="40" cy="193" r="10" fill="url(#eLimb)"></circle>
+<path d="M192 148 Q220 160 204 190" fill="none" stroke="#7954EE" stroke-width="14" stroke-linecap="round"></path>
+<circle cx="200" cy="193" r="10" fill="url(#eLimb)"></circle>
+</svg>

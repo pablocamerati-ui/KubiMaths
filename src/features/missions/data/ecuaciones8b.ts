@@ -1,0 +1,176 @@
+import { Mission } from '../types';
+
+/**
+ * Misión 8.º básico — Ecuaciones e inecuaciones.
+ * Propiedad distributiva, ecuaciones lineales, inecuaciones y problemas.
+ */
+export const misionEcuaciones8b: Mission = {
+  id: 'ecuaciones-8b',
+  titulo: 'Ecuaciones e inecuaciones',
+  nivel: '8.º básico',
+  unidad: 'Unidad 2 · Álgebra',
+  corazonesIniciales: 3,
+  xpPorCorrecta: 10,
+  xpBonoCompletar: 20,
+  preguntas: [
+    {
+      // valor: expresión evaluada en x = 2
+      id: 'q8-01',
+      habilidad: 'Propiedad distributiva',
+      enunciado: 'Aplica la propiedad distributiva:',
+      expresion: '3(x + 4)',
+      opciones: [
+        { id: 'a', valor: 3 * 2 + 4, texto: '3x + 4', porQue: 'El 3 multiplica a todo el paréntesis: también al 4.' },
+        { id: 'b', valor: 3 * 2 + 12, texto: '3x + 12' },
+        { id: 'c', valor: 2 + 12, texto: 'x + 12', porQue: 'El 3 también multiplica a la x.' },
+        { id: 'd', valor: 3 * 2 + 7, texto: '3x + 7', porQue: 'Sumaste 3 + 4. El 3 multiplica: 3 · 4 = 12.' },
+      ],
+      correcta: 'b',
+      calcular: () => 3 * (2 + 4),
+      pasos: [
+        'El 3 multiplica a cada término del paréntesis.',
+        '3 · x = 3x y 3 · 4 = 12.',
+        '3(x + 4) = 3x + 12.',
+      ],
+      pista: 'Multiplica el 3 por cada término del paréntesis.',
+    },
+    {
+      id: 'q8-02',
+      habilidad: 'Ecuaciones con paréntesis',
+      enunciado: 'Resuelve la ecuación:',
+      expresion: '2(x − 3) = 10',
+      opciones: [
+        { id: 'a', valor: 8 },
+        { id: 'b', valor: 6.5, porQue: 'Multiplicaste solo la x (2x − 3 = 10). El 2 también multiplica al 3.' },
+        { id: 'c', valor: 2, porQue: 'Después de dividir por 2 queda x − 3 = 5: hay que sumar 3, no restarlo.' },
+        { id: 'd', valor: 13, porQue: 'Faltó dividir por 2: el paréntesis completo está multiplicado por 2.' },
+      ],
+      correcta: 'a',
+      calcular: () => 10 / 2 + 3,
+      pasos: [
+        'Dividimos ambos lados por 2: x − 3 = 5.',
+        'Sumamos 3 a ambos lados: x = 8.',
+        'Comprobación: 2 · (8 − 3) = 2 · 5 = 10.',
+      ],
+      pista: 'Primero divide ambos lados por 2 o aplica la distributiva.',
+    },
+    {
+      id: 'q8-03',
+      habilidad: 'Incógnita en ambos lados',
+      enunciado: 'Resuelve la ecuación:',
+      expresion: '4x − 7 = x + 8',
+      opciones: [
+        { id: 'a', valor: 15, porQue: '15 es 3x. Falta dividir por 3.' },
+        { id: 'b', valor: 1 / 3, texto: '1/3', porQue: 'Al pasar el −7 al otro lado se suma: 8 + 7 = 15, no 8 − 7.' },
+        { id: 'c', valor: 5 },
+        { id: 'd', valor: 3, porQue: '3 es el coeficiente de x. Falta dividir 15 por 3.' },
+      ],
+      correcta: 'c',
+      calcular: () => (8 + 7) / (4 - 1),
+      pasos: [
+        'Restamos x a ambos lados: 3x − 7 = 8.',
+        'Sumamos 7: 3x = 15.',
+        'Dividimos por 3: x = 5.',
+      ],
+      pista: 'Deja las x a un lado y los números al otro.',
+    },
+    {
+      id: 'q8-04',
+      habilidad: 'Inecuaciones',
+      enunciado: '¿Cuál es el menor número entero que cumple la inecuación?',
+      expresion: 'x + 5 > 12',
+      opciones: [
+        { id: 'a', valor: 7, porQue: '7 + 5 = 12, y 12 no es mayor que 12. La desigualdad es estricta.' },
+        { id: 'b', valor: 17, porQue: 'Sumaste 5 en vez de restarlo: x > 12 − 5.' },
+        { id: 'c', valor: 8 },
+        { id: 'd', valor: 6, porQue: '6 + 5 = 11, que es menor que 12.' },
+      ],
+      correcta: 'c',
+      calcular: () => 12 - 5 + 1,
+      pasos: [
+        'Restamos 5 a ambos lados: x > 7.',
+        'x debe ser mayor que 7 (no igual).',
+        'El menor entero mayor que 7 es 8.',
+      ],
+      pista: 'Resuelve la inecuación y busca el primer entero que la cumple.',
+    },
+    {
+      id: 'q8-05',
+      habilidad: 'Inecuaciones con números negativos',
+      enunciado: '¿Cuál de estos números NO cumple la inecuación?',
+      expresion: '−2x ≤ 6',
+      opciones: [
+        { id: 'a', valor: -3, porQue: '−2 · (−3) = 6, y 6 ≤ 6 sí se cumple.' },
+        { id: 'b', valor: 0, porQue: '−2 · 0 = 0, y 0 ≤ 6 se cumple.' },
+        { id: 'c', valor: 5, porQue: '−2 · 5 = −10, y −10 ≤ 6 se cumple.' },
+        { id: 'd', valor: -4 },
+      ],
+      correcta: 'd',
+      calcular: () => [-3, 0, 5, -4].find((x) => !(-2 * x <= 6))!,
+      pasos: [
+        'Reemplazamos cada número en −2x.',
+        'Para x = −4: −2 · (−4) = 8, y 8 no es menor ni igual a 6.',
+        'Resolviendo: al dividir por −2 se invierte el signo, x ≥ −3. El único que no cumple es −4.',
+      ],
+      pista: 'Reemplaza cada número en −2x y compáralo con 6.',
+    },
+    {
+      id: 'q8-06',
+      habilidad: 'Plantear una ecuación',
+      enunciado: 'La suma de tres números consecutivos es 51. ¿Cuál es el menor de ellos?',
+      opciones: [
+        { id: 'a', valor: 17, porQue: '17 es el número del medio. Se pregunta por el menor.' },
+        { id: 'b', valor: 16 },
+        { id: 'c', valor: 18, porQue: '18 es el mayor de los tres. Se pregunta por el menor.' },
+        { id: 'd', valor: 15, porQue: 'Revisa: 15 + 16 + 17 = 48, no 51.' },
+      ],
+      correcta: 'b',
+      calcular: () => (51 - 3) / 3,
+      pasos: [
+        'Los números son x, x + 1 y x + 2.',
+        'x + (x + 1) + (x + 2) = 51, es decir, 3x + 3 = 51.',
+        '3x = 48, entonces x = 16. Los números son 16, 17 y 18.',
+      ],
+      pista: 'Llama x al menor; los siguientes son x + 1 y x + 2.',
+    },
+    {
+      id: 'q8-07',
+      habilidad: 'Inecuaciones en contexto',
+      enunciado: 'Tienes $5.000 y cada lápiz cuesta $700. ¿Cuántos lápices puedes comprar como máximo?',
+      opciones: [
+        { id: 'a', valor: 8, porQue: '8 · $700 = $5.600, más de lo que tienes.' },
+        { id: 'b', valor: 50 / 7, texto: '7,14', porQue: 'No se pueden comprar partes de un lápiz: hay que tomar el mayor número entero.' },
+        { id: 'c', valor: 4300, porQue: 'Restaste $5.000 − $700. Se pregunta cuántos lápices alcanzan.' },
+        { id: 'd', valor: 7 },
+      ],
+      correcta: 'd',
+      calcular: () => Math.floor(5000 / 700),
+      pasos: [
+        'Planteamos: 700 · x ≤ 5.000.',
+        'x ≤ 5.000 : 700 ≈ 7,14.',
+        'Como x es una cantidad de lápices, el máximo es 7.',
+      ],
+      pista: 'Plantea 700 · x ≤ 5.000.',
+    },
+    {
+      id: 'q8-08',
+      habilidad: 'Ecuaciones en contexto',
+      enunciado: 'Arrendar una bicicleta cuesta $1.000 fijos más $500 por hora. Si pagaste $4.500, ¿cuántas horas la usaste?',
+      unidad: 'horas',
+      opciones: [
+        { id: 'a', valor: 9, porQue: 'Dividiste $4.500 : $500 sin restar antes el cargo fijo.' },
+        { id: 'b', valor: 11, porQue: 'Sumaste el cargo fijo. Hay que restarlo: 4.500 − 1.000.' },
+        { id: 'c', valor: 7 },
+        { id: 'd', valor: 3500, porQue: '$3.500 es lo que pagaste por las horas. Falta dividir por $500.' },
+      ],
+      correcta: 'c',
+      calcular: () => (4500 - 1000) / 500,
+      pasos: [
+        'Planteamos: 1.000 + 500h = 4.500.',
+        'Restamos 1.000: 500h = 3.500.',
+        'Dividimos por 500: h = 7 horas.',
+      ],
+      pista: 'Primero descuenta el cargo fijo y después divide por el valor de la hora.',
+    },
+  ],
+};

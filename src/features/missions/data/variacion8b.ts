@@ -1,0 +1,178 @@
+import { Mission } from '../types';
+
+/**
+ * Misión 8.º básico — Variaciones porcentuales.
+ * Aumentos y disminuciones porcentuales, variaciones sucesivas, IVA,
+ * interés simple y cálculo del valor original.
+ * Los cálculos usan fracciones de 100 para evitar errores de redondeo.
+ */
+export const misionVariacion8b: Mission = {
+  id: 'variacion-8b',
+  titulo: 'Variaciones porcentuales',
+  nivel: '8.º básico',
+  unidad: 'Unidad 1 · Números',
+  corazonesIniciales: 3,
+  xpPorCorrecta: 10,
+  xpBonoCompletar: 20,
+  preguntas: [
+    {
+      id: 'v8-01',
+      habilidad: 'Porcentaje de aumento',
+      enunciado: 'El precio de un cuaderno sube de $2.000 a $2.500. ¿En qué porcentaje aumentó?',
+      unidad: '%',
+      opciones: [
+        { id: 'a', valor: 500, porQue: '$500 es el aumento en pesos. Falta compararlo con el precio inicial.' },
+        { id: 'b', valor: 20, porQue: 'Comparaste con el precio final (500 de 2.500). El aumento se compara con el precio inicial.' },
+        { id: 'c', valor: 25 },
+        { id: 'd', valor: 125, porQue: '125 % es el precio final respecto del inicial. El aumento es la diferencia con el 100 %.' },
+      ],
+      correcta: 'c',
+      calcular: () => ((2500 - 2000) * 100) / 2000,
+      pasos: [
+        'Aumento: $2.500 − $2.000 = $500.',
+        'Lo comparamos con el precio inicial: 500/2.000 = 0,25.',
+        '0,25 = 25 %.',
+      ],
+      pista: 'Calcula cuánto subió y compáralo con el precio inicial.',
+    },
+    {
+      id: 'v8-02',
+      habilidad: 'Disminución porcentual',
+      enunciado: 'Una bicicleta de $50.000 se rebaja un 30 %. ¿Cuál es su nuevo precio?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 35000 },
+        { id: 'b', valor: 15000, porQue: '$15.000 es la rebaja. Hay que restarla al precio original.' },
+        { id: 'c', valor: 49970, porQue: 'El 30 % no son $30: es 30/100 de $50.000.' },
+        { id: 'd', valor: 65000, porQue: 'Sumaste el 30 %. Una rebaja se resta.' },
+      ],
+      correcta: 'a',
+      calcular: () => 50000 - (50000 * 30) / 100,
+      pasos: [
+        'El 30 % de $50.000 es $15.000.',
+        'Nuevo precio: $50.000 − $15.000 = $35.000.',
+        'Otra forma: pagas el 70 %: 0,7 · 50.000 = 35.000.',
+      ],
+      pista: 'Si rebajan el 30 %, ¿qué porcentaje del precio pagas?',
+    },
+    {
+      id: 'v8-03',
+      habilidad: 'Variaciones sucesivas',
+      enunciado: 'Un producto de $10.000 sube un 10 % y, después, otro 10 %. ¿Cuál es su precio final?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 12000, porQue: 'No se suman los porcentajes: el segundo 10 % se calcula sobre el nuevo precio de $11.000.' },
+        { id: 'b', valor: 12100 },
+        { id: 'c', valor: 11000, porQue: 'Aplicaste solo el primer aumento. Falta el segundo 10 %.' },
+        { id: 'd', valor: 10200, porQue: 'El 10 % de $10.000 es $1.000, no $100.' },
+      ],
+      correcta: 'b',
+      calcular: () => (((10000 * 110) / 100) * 110) / 100,
+      pasos: [
+        'Primer aumento: 10 % de $10.000 = $1.000 → $11.000.',
+        'Segundo aumento: 10 % de $11.000 = $1.100 → $12.100.',
+        'Precio final: $12.100 (un 21 % más que al inicio, no un 20 %).',
+      ],
+      pista: 'Calcula el segundo aumento sobre el precio que quedó después del primero.',
+    },
+    {
+      id: 'v8-04',
+      habilidad: 'IVA',
+      enunciado: 'Un servicio cuesta $8.000 sin IVA. Si el IVA es 19 %, ¿cuánto se paga en total?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 1520, porQue: '$1.520 es solo el IVA. Hay que sumarlo al precio neto.' },
+        { id: 'b', valor: 8019, porQue: 'El 19 % no son $19: es 19/100 de $8.000.' },
+        { id: 'c', valor: 9520 },
+        { id: 'd', valor: 6480, porQue: 'Restaste el IVA. El impuesto se agrega al precio.' },
+      ],
+      correcta: 'c',
+      calcular: () => 8000 + (8000 * 19) / 100,
+      pasos: [
+        'IVA: 19 % de $8.000 = 0,19 · 8.000 = $1.520.',
+        'Total: $8.000 + $1.520.',
+        'Se paga $9.520.',
+      ],
+      pista: 'Calcula el 19 % del precio neto y súmalo.',
+    },
+    {
+      id: 'v8-05',
+      habilidad: 'Factor de variación',
+      enunciado: '¿Por qué número multiplicas un precio para aplicarle un descuento del 15 %?',
+      opciones: [
+        { id: 'a', valor: 0.15, porQue: 'Multiplicar por 0,15 da el descuento, no el precio que pagas.' },
+        { id: 'b', valor: 1.15, porQue: 'Multiplicar por 1,15 es un aumento del 15 %.' },
+        { id: 'c', valor: 85, porQue: 'El 85 % como factor se escribe en decimal: 85/100.' },
+        { id: 'd', valor: 0.85 },
+      ],
+      correcta: 'd',
+      calcular: () => (100 - 15) / 100,
+      pasos: [
+        'Con un descuento del 15 %, pagas el 100 % − 15 % = 85 %.',
+        '85 % = 85/100.',
+        'El factor es 0,85.',
+      ],
+      pista: 'Si descuentan el 15 %, ¿qué porcentaje del precio pagas?',
+    },
+    {
+      id: 'v8-06',
+      habilidad: 'Porcentaje de disminución',
+      enunciado: 'En un estanque había 400 peces y ahora hay 300. ¿En qué porcentaje disminuyó la cantidad de peces?',
+      unidad: '%',
+      opciones: [
+        { id: 'a', valor: 25 },
+        { id: 'b', valor: 100, porQue: '100 es la disminución en cantidad de peces. Falta compararla con los 400 iniciales.' },
+        { id: 'c', valor: 100 / 3, texto: '≈ 33,3 %', porQue: 'Comparaste con la cantidad final (100 de 300). Se compara con la inicial.' },
+        { id: 'd', valor: 75, porQue: '75 % es lo que queda respecto de lo inicial. La disminución es 100 % − 75 %.' },
+      ],
+      correcta: 'a',
+      calcular: () => ((400 - 300) * 100) / 400,
+      pasos: [
+        'Disminución: 400 − 300 = 100 peces.',
+        'Respecto de la cantidad inicial: 100/400 = 0,25.',
+        'Disminuyó un 25 %.',
+      ],
+      pista: 'Compara la disminución con la cantidad inicial.',
+    },
+    {
+      id: 'v8-07',
+      habilidad: 'Interés simple',
+      enunciado: 'Depositas $100.000 a un interés simple de 5 % anual durante 3 años. ¿Cuánto interés ganas en total?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 5000, porQue: '$5.000 es el interés de un año. Son tres años.' },
+        { id: 'b', valor: 115000, porQue: '$115.000 es el monto final (capital + interés). Se pregunta solo por el interés.' },
+        { id: 'c', valor: 15000 },
+        { id: 'd', valor: 15762.5, porQue: 'Calculaste interés compuesto. En el interés simple se gana lo mismo cada año.' },
+      ],
+      correcta: 'c',
+      calcular: () => ((100000 * 5) / 100) * 3,
+      pasos: [
+        'Interés de un año: 5 % de $100.000 = $5.000.',
+        'En el interés simple, cada año se gana lo mismo.',
+        'En 3 años: 3 · $5.000 = $15.000.',
+      ],
+      pista: 'Calcula el interés de un año y multiplícalo por la cantidad de años.',
+    },
+    {
+      id: 'v8-08',
+      habilidad: 'Valor original',
+      enunciado: 'Pagaste $6.800 por unas zapatillas que tenían un 15 % de descuento. ¿Cuál era su precio original?',
+      prefijo: '$',
+      opciones: [
+        { id: 'a', valor: 7820, porQue: 'Sumaste el 15 % de $6.800, pero el descuento se calculó sobre el precio original, no sobre lo que pagaste.' },
+        { id: 'b', valor: 1020, porQue: '$1.020 es el 15 % de $6.800, no el precio original.' },
+        { id: 'c', valor: 5780, porQue: 'Aplicaste otro descuento. Se busca el precio antes de descontar.' },
+        { id: 'd', valor: 8000 },
+      ],
+      correcta: 'd',
+      calcular: () => (6800 * 100) / 85,
+      pasos: [
+        'Con un 15 % de descuento pagaste el 85 % del precio original.',
+        '85 % del precio = $6.800, entonces el precio = 6.800 : 0,85.',
+        'Precio original: $8.000.',
+      ],
+      pista: 'Lo que pagaste corresponde al 85 % del precio original.',
+    },
+  ],
+};

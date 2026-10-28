@@ -1,0 +1,177 @@
+import { Mission } from '../types';
+
+/**
+ * Misión 1.º medio — Productos notables y factorización.
+ * Las alternativas son expresiones: `valor` es su resultado evaluado en
+ * x = 2, para que las pruebas verifiquen la equivalencia algebraica.
+ */
+export const misionAlgebra1m: Mission = {
+  id: 'algebra-1m',
+  titulo: 'Productos notables',
+  nivel: '1.º medio',
+  unidad: 'Unidad 2 · Álgebra',
+  corazonesIniciales: 3,
+  xpPorCorrecta: 10,
+  xpBonoCompletar: 20,
+  preguntas: [
+    {
+      id: 'n1-01',
+      habilidad: 'Cuadrado de binomio',
+      enunciado: 'Desarrolla el cuadrado de binomio:',
+      expresion: '(x + 3)²',
+      opciones: [
+        { id: 'a', valor: 2 ** 2 + 9, texto: 'x² + 9', porQue: 'Faltó el doble producto: 2 · x · 3 = 6x.' },
+        { id: 'b', valor: 2 ** 2 + 6 * 2 + 9, texto: 'x² + 6x + 9' },
+        { id: 'c', valor: 2 ** 2 + 3 * 2 + 9, texto: 'x² + 3x + 9', porQue: 'El término central es el doble producto: 2 · 3 · x = 6x.' },
+        { id: 'd', valor: 2 * 2 + 6, texto: '2x + 6', porQue: 'Elevar al cuadrado no es multiplicar por 2.' },
+      ],
+      correcta: 'b',
+      calcular: () => (2 + 3) ** 2,
+      pasos: [
+        '(a + b)² = a² + 2ab + b².',
+        'a = x y b = 3: x² + 2 · x · 3 + 3².',
+        '= x² + 6x + 9.',
+      ],
+      pista: 'Cuadrado del primero, más el doble del primero por el segundo, más el cuadrado del segundo.',
+    },
+    {
+      id: 'n1-02',
+      habilidad: 'Suma por diferencia',
+      enunciado: 'Desarrolla el producto:',
+      expresion: '(x − 5)(x + 5)',
+      opciones: [
+        { id: 'a', valor: 2 ** 2 - 25, texto: 'x² − 25' },
+        { id: 'b', valor: 2 ** 2 + 25, texto: 'x² + 25', porQue: '(−5) · 5 = −25: el término es negativo.' },
+        { id: 'c', valor: 2 ** 2 - 10 * 2 - 25, texto: 'x² − 10x − 25', porQue: 'Los términos con x se anulan: −5x + 5x = 0.' },
+        { id: 'd', valor: 2 ** 2 - 10, texto: 'x² − 10', porQue: '5 · 5 = 25, no 10.' },
+      ],
+      correcta: 'a',
+      calcular: () => (2 - 5) * (2 + 5),
+      pasos: [
+        '(a − b)(a + b) = a² − b².',
+        'a = x y b = 5.',
+        '(x − 5)(x + 5) = x² − 25.',
+      ],
+      pista: 'Suma por diferencia da diferencia de cuadrados.',
+    },
+    {
+      id: 'n1-03',
+      habilidad: 'Factor común',
+      enunciado: 'Factoriza la expresión:',
+      expresion: '6x + 9',
+      opciones: [
+        { id: 'a', valor: 3 * (2 * 2 + 9), texto: '3(2x + 9)', porQue: 'Al sacar el 3, el 9 queda como 9 : 3 = 3.' },
+        { id: 'b', valor: 6 * (2 + 9), texto: '6(x + 9)', porQue: '6 no divide a 9: el factor común es 3.' },
+        { id: 'c', valor: 3 * (2 * 2 + 3), texto: '3(2x + 3)' },
+        { id: 'd', valor: 9 * (6 * 2 + 1), texto: '9(6x + 1)', porQue: '9 no divide a 6x: el factor común es 3.' },
+      ],
+      correcta: 'c',
+      calcular: () => 6 * 2 + 9,
+      pasos: [
+        'El máximo común divisor de 6 y 9 es 3.',
+        '6x : 3 = 2x y 9 : 3 = 3.',
+        '6x + 9 = 3(2x + 3).',
+      ],
+      pista: 'Busca el mayor número que divide a 6 y a 9.',
+    },
+    {
+      id: 'n1-04',
+      habilidad: 'Diferencia de cuadrados',
+      enunciado: 'Factoriza la expresión:',
+      expresion: 'x² − 49',
+      opciones: [
+        { id: 'a', valor: (2 - 7) ** 2, texto: '(x − 7)²', porQue: '(x − 7)² = x² − 14x + 49: aparece un término central.' },
+        { id: 'b', valor: (2 + 7) ** 2, texto: '(x + 7)²', porQue: '(x + 7)² = x² + 14x + 49, no x² − 49.' },
+        { id: 'c', valor: (2 - 49) * (2 + 1), texto: '(x − 49)(x + 1)', porQue: 'La raíz de 49 es 7: se usa 7 en cada factor.' },
+        { id: 'd', valor: (2 + 7) * (2 - 7), texto: '(x + 7)(x − 7)' },
+      ],
+      correcta: 'd',
+      calcular: () => 2 ** 2 - 49,
+      pasos: [
+        'x² − 49 es una diferencia de cuadrados: x² − 7².',
+        'a² − b² = (a + b)(a − b).',
+        'x² − 49 = (x + 7)(x − 7).',
+      ],
+      pista: '¿De qué número es 49 el cuadrado?',
+    },
+    {
+      id: 'n1-05',
+      habilidad: 'Trinomio',
+      enunciado: 'Factoriza el trinomio:',
+      expresion: 'x² + 5x + 6',
+      opciones: [
+        { id: 'a', valor: (2 + 1) * (2 + 6), texto: '(x + 1)(x + 6)', porQue: '1 · 6 = 6, pero 1 + 6 = 7, no 5.' },
+        { id: 'b', valor: (2 + 2) * (2 + 3), texto: '(x + 2)(x + 3)' },
+        { id: 'c', valor: (2 + 5) * (2 + 6), texto: '(x + 5)(x + 6)', porQue: 'Se buscan dos números que sumen 5 y multipliquen 6, no los coeficientes.' },
+        { id: 'd', valor: (2 - 2) * (2 - 3), texto: '(x − 2)(x − 3)', porQue: '−2 y −3 suman −5. Aquí el término es +5x.' },
+      ],
+      correcta: 'b',
+      calcular: () => 2 ** 2 + 5 * 2 + 6,
+      pasos: [
+        'Buscamos dos números que sumen 5 y multipliquen 6.',
+        'Son 2 y 3: 2 + 3 = 5 y 2 · 3 = 6.',
+        'x² + 5x + 6 = (x + 2)(x + 3).',
+      ],
+      pista: 'Busca dos números que sumen 5 y cuyo producto sea 6.',
+    },
+    {
+      id: 'n1-06',
+      habilidad: 'Cálculo mental con productos notables',
+      enunciado: 'Calcula 21² usando un cuadrado de binomio.',
+      expresion: '21²',
+      opciones: [
+        { id: 'a', valor: 401, porQue: 'Faltó el doble producto: (20 + 1)² = 400 + 40 + 1.' },
+        { id: 'b', valor: 421, porQue: 'El doble producto es 2 · 20 · 1 = 40, no 20.' },
+        { id: 'c', valor: 441 },
+        { id: 'd', valor: 42, porQue: 'Multiplicaste por 2. Elevar al cuadrado es multiplicar 21 por sí mismo.' },
+      ],
+      correcta: 'c',
+      calcular: () => 21 ** 2,
+      pasos: [
+        '21² = (20 + 1)².',
+        '= 20² + 2 · 20 · 1 + 1² = 400 + 40 + 1.',
+        '= 441.',
+      ],
+      pista: 'Escribe 21 como 20 + 1 y usa el cuadrado de un binomio.',
+    },
+    {
+      id: 'n1-07',
+      habilidad: 'Productos notables en geometría',
+      enunciado: 'Un cuadrado tiene lados de (x + 4) cm. ¿Qué expresión representa su área?',
+      opciones: [
+        { id: 'a', valor: 2 ** 2 + 8 * 2 + 16, texto: 'x² + 8x + 16' },
+        { id: 'b', valor: 2 ** 2 + 16, texto: 'x² + 16', porQue: 'Faltó el doble producto: 2 · x · 4 = 8x.' },
+        { id: 'c', valor: 4 * 2 + 16, texto: '4x + 16', porQue: '4x + 16 es el perímetro (cuatro lados). El área es lado al cuadrado.' },
+        { id: 'd', valor: 2 ** 2 + 4 * 2 + 16, texto: 'x² + 4x + 16', porQue: 'El término central es el doble producto: 8x.' },
+      ],
+      correcta: 'a',
+      calcular: () => (2 + 4) ** 2,
+      pasos: [
+        'Área del cuadrado = lado² = (x + 4)².',
+        '(x + 4)² = x² + 2 · x · 4 + 4².',
+        '= x² + 8x + 16.',
+      ],
+      pista: 'El área es el lado al cuadrado: desarrolla el cuadrado de binomio.',
+    },
+    {
+      id: 'n1-08',
+      habilidad: 'Simplificación algebraica',
+      enunciado: 'Simplifica la expresión (para x ≠ 3):',
+      expresion: '(x² − 9) : (x − 3)',
+      opciones: [
+        { id: 'a', valor: 2 - 3, texto: 'x − 3', porQue: 'Factoriza el numerador: (x + 3)(x − 3). Al simplificar queda el otro factor.' },
+        { id: 'b', valor: 2 ** 2 - 3, texto: 'x² − 3', porQue: 'No se pueden cancelar términos sueltos de una suma; solo factores.' },
+        { id: 'c', valor: 3, texto: '3', porQue: 'Cancelaste las x. Solo se simplifican factores completos.' },
+        { id: 'd', valor: 2 + 3, texto: 'x + 3' },
+      ],
+      correcta: 'd',
+      calcular: () => (2 ** 2 - 9) / (2 - 3),
+      pasos: [
+        'Factorizamos el numerador: x² − 9 = (x + 3)(x − 3).',
+        'Dividimos por (x − 3): el factor se simplifica.',
+        'Resultado: x + 3.',
+      ],
+      pista: 'Factoriza el numerador como diferencia de cuadrados.',
+    },
+  ],
+};

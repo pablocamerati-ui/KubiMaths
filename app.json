@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "KUBI",
+    "slug": "kubi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "cl.kubi.app"
+    },
+    "android": {
+      "predictiveBackGestureEnabled": false,
+      "package": "cl.kubi.app"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      "expo-asset"
+    ],
+    "scheme": "kubi",
+    "backgroundColor": "#F7F8FF",
+    "experiments": {
+      "typedRoutes": true
+    },
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F7F8FF"
+    }
+  }
+}

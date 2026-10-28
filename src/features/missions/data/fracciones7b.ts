@@ -1,0 +1,175 @@
+import { Mission } from '../types';
+
+/**
+ * Misión 2 — Fracciones y decimales (7.º básico).
+ * Equivalencia, conversión, orden, operaciones y problemas con fracciones
+ * y decimales positivos.
+ */
+export const misionFracciones7b: Mission = {
+  id: 'fracciones-7b',
+  titulo: 'Fracciones y decimales',
+  nivel: '7.º básico',
+  unidad: 'Unidad 1 · Números',
+  corazonesIniciales: 3,
+  xpPorCorrecta: 10,
+  xpBonoCompletar: 20,
+  preguntas: [
+    {
+      id: 'f7-01',
+      habilidad: 'Fracciones equivalentes',
+      enunciado: '¿Qué fracción es equivalente a 3/4?',
+      expresion: '3/4',
+      opciones: [
+        { id: 'a', valor: 6 / 8, texto: '6/8' },
+        { id: 'b', valor: 4 / 5, texto: '4/5', porQue: 'Sumar 1 al numerador y al denominador no mantiene la fracción: hay que multiplicar ambos por el mismo número.' },
+        { id: 'c', valor: 3 / 8, texto: '3/8', porQue: 'Si solo cambias el denominador, la fracción cambia de valor. Multiplica numerador y denominador por el mismo número.' },
+        { id: 'd', valor: 9 / 16, texto: '9/16', porQue: 'Elevaste al cuadrado numerador y denominador; eso no da una fracción equivalente.' },
+      ],
+      correcta: 'a',
+      calcular: () => 3 / 4,
+      pasos: [
+        'Para obtener una fracción equivalente, multiplicamos numerador y denominador por el mismo número.',
+        '3/4 = (3 · 2)/(4 · 2) = 6/8.',
+        'Por lo tanto, 6/8 es equivalente a 3/4.',
+      ],
+      pista: 'Multiplica arriba y abajo por el mismo número.',
+    },
+    {
+      id: 'f7-02',
+      habilidad: 'De decimal a fracción',
+      enunciado: 'Escribe 0,4 como fracción irreducible.',
+      expresion: '0,4',
+      opciones: [
+        { id: 'a', valor: 4 / 100, texto: '4/100', porQue: '0,4 tiene una sola cifra decimal: son 4 décimos (4/10), no 4 centésimos.' },
+        { id: 'b', valor: 1 / 4, texto: '1/4', porQue: '1/4 es 0,25. Escribe 0,4 como 4/10 y simplifica.' },
+        { id: 'c', valor: 2 / 5, texto: '2/5' },
+        { id: 'd', valor: 4 / 5, texto: '4/5', porQue: '4/5 es 0,8. Al simplificar 4/10 hay que dividir numerador y denominador por 2.' },
+      ],
+      correcta: 'c',
+      calcular: () => 0.4,
+      pasos: [
+        '0,4 son 4 décimos: 4/10.',
+        'Simplificamos dividiendo numerador y denominador por 2: 4/10 = 2/5.',
+        '2/5 ya no se puede simplificar, así que es irreducible.',
+      ],
+      pista: '¿Cuántos décimos son 0,4? Después simplifica.',
+    },
+    {
+      id: 'f7-03',
+      habilidad: 'Adición de fracciones',
+      enunciado: 'Calcula el resultado:',
+      expresion: '1/2 + 1/3',
+      opciones: [
+        { id: 'a', valor: 2 / 5, texto: '2/5', porQue: 'No se suman numeradores con numeradores y denominadores con denominadores. Primero busca un denominador común.' },
+        { id: 'b', valor: 5 / 6, texto: '5/6' },
+        { id: 'c', valor: 1 / 6, texto: '1/6', porQue: '1/6 es la resta 1/2 − 1/3. Aquí había que sumar.' },
+        { id: 'd', valor: 2 / 6, texto: '2/6', porQue: 'El denominador común es 6, pero también hay que convertir los numeradores: 1/2 = 3/6 y 1/3 = 2/6.' },
+      ],
+      correcta: 'b',
+      calcular: () => 1 / 2 + 1 / 3,
+      pasos: [
+        'Buscamos un denominador común: 6.',
+        '1/2 = 3/6 y 1/3 = 2/6.',
+        '3/6 + 2/6 = 5/6.',
+      ],
+      pista: 'Convierte ambas fracciones a sextos antes de sumar.',
+    },
+    {
+      id: 'f7-04',
+      habilidad: 'Orden de fracciones y decimales',
+      enunciado: '¿Cuál de estos números es el mayor?',
+      opciones: [
+        { id: 'a', valor: 2 / 3, texto: '2/3', porQue: '2/3 es aproximadamente 0,67, un poco menos que 0,7.' },
+        { id: 'b', valor: 0.65, porQue: '0,65 es menor que 0,7: compara las décimas y luego las centésimas (0,65 < 0,70).' },
+        { id: 'c', valor: 3 / 5, texto: '3/5', porQue: '3/5 es 0,6, que es menor que 0,7.' },
+        { id: 'd', valor: 0.7 },
+      ],
+      correcta: 'd',
+      calcular: () => Math.max(2 / 3, 0.65, 3 / 5, 0.7),
+      pasos: [
+        'Escribimos todos como decimales: 2/3 ≈ 0,67; 3/5 = 0,6.',
+        'Comparamos 0,67; 0,65; 0,6 y 0,7.',
+        'El mayor es 0,7.',
+      ],
+      pista: 'Convierte las fracciones a decimales para compararlas.',
+    },
+    {
+      id: 'f7-05',
+      habilidad: 'Multiplicación de decimales',
+      enunciado: 'Calcula el resultado:',
+      expresion: '2,5 · 0,4',
+      opciones: [
+        { id: 'a', valor: 10, porQue: 'Multiplicaste 25 · 4 = 100 y ubicaste mal la coma: hay dos cifras decimales en total, así que es 1,00.' },
+        { id: 'b', valor: 1 },
+        { id: 'c', valor: 0.1, porQue: 'Corriste la coma una posición de más: 25 · 4 = 100 y con dos decimales queda 1,00.' },
+        { id: 'd', valor: 2.9, porQue: '2,9 es la suma 2,5 + 0,4. Aquí se pedía multiplicar.' },
+      ],
+      correcta: 'b',
+      calcular: () => 2.5 * 0.4,
+      pasos: [
+        'Multiplicamos sin coma: 25 · 4 = 100.',
+        'Contamos las cifras decimales: 2,5 tiene una y 0,4 tiene una. Total: dos.',
+        'Ubicamos la coma dos lugares desde la derecha: 1,00 = 1.',
+      ],
+      pista: 'Multiplica como si no hubiera coma y luego cuenta los decimales.',
+    },
+    {
+      id: 'f7-06',
+      habilidad: 'Fracciones en contexto',
+      enunciado: 'Sofía comió 3/8 de una pizza y su hermano 2/8. ¿Qué fracción de la pizza queda?',
+      opciones: [
+        { id: 'a', valor: 5 / 8, texto: '5/8', porQue: '5/8 es lo que se comieron entre los dos. La pregunta es cuánto queda.' },
+        { id: 'b', valor: 5 / 16, texto: '5/16', porQue: 'Al sumar fracciones con igual denominador, el denominador se mantiene: 3/8 + 2/8 = 5/8.' },
+        { id: 'c', valor: 3 / 8, texto: '3/8' },
+        { id: 'd', valor: 1 / 8, texto: '1/8', porQue: '1/8 es la diferencia entre lo que comió cada uno. Hay que restar lo comido a la pizza entera (8/8).' },
+      ],
+      correcta: 'c',
+      calcular: () => 1 - (3 / 8 + 2 / 8),
+      pasos: [
+        'Entre los dos comieron 3/8 + 2/8 = 5/8.',
+        'La pizza entera es 8/8.',
+        'Queda 8/8 − 5/8 = 3/8.',
+      ],
+      pista: 'La pizza completa son 8 octavos. ¿Cuántos se comieron?',
+    },
+    {
+      id: 'f7-07',
+      habilidad: 'Decimales en contexto',
+      enunciado: 'Una botella tiene 1,5 L de jugo. Se sirven 4 vasos de 0,25 L cada uno. ¿Cuánto jugo queda?',
+      unidad: 'L',
+      opciones: [
+        { id: 'a', valor: 0.5 },
+        { id: 'b', valor: 1.25, porQue: 'Restaste un solo vaso. Se sirvieron 4 vasos: 4 · 0,25 = 1 L.' },
+        { id: 'c', valor: 1, porQue: '1 L es lo que se sirvió. La pregunta es cuánto queda en la botella.' },
+        { id: 'd', valor: 0.75, porQue: 'Revisa la multiplicación: 4 · 0,25 = 1, no 0,75.' },
+      ],
+      correcta: 'a',
+      calcular: () => 1.5 - 4 * 0.25,
+      pasos: [
+        'Jugo servido: 4 · 0,25 = 1 L.',
+        'Jugo que queda: 1,5 − 1 = 0,5 L.',
+        'Quedan 0,5 L (medio litro).',
+      ],
+      pista: 'Primero calcula cuánto jugo se sirvió en total.',
+    },
+    {
+      id: 'f7-08',
+      habilidad: 'Fracción de una cantidad',
+      enunciado: 'Calcula 3/4 de 20.',
+      opciones: [
+        { id: 'a', valor: 5, porQue: 'Dividiste 20 en 4 partes (5), pero faltó tomar 3 de esas partes: 3 · 5.' },
+        { id: 'b', valor: 15 },
+        { id: 'c', valor: 80, porQue: 'Multiplicaste por el denominador. Para calcular 3/4 de 20 se divide por 4 y se multiplica por 3.' },
+        { id: 'd', valor: 12, porQue: '12 es 3/5 de 20. Aquí el denominador es 4.' },
+      ],
+      correcta: 'b',
+      calcular: () => (20 / 4) * 3,
+      pasos: [
+        'Dividimos 20 en 4 partes iguales: 20 : 4 = 5.',
+        'Tomamos 3 de esas partes: 3 · 5 = 15.',
+        '3/4 de 20 es 15.',
+      ],
+      pista: 'Divide 20 por el denominador y multiplica por el numerador.',
+    },
+  ],
+};
