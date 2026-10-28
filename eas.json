@@ -4,19 +4,13 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "base": {
-      "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "https://zmtjylyqgtkbsrzpsmio.supabase.co",
-        "EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY": "sb_publishable_GMA7urG5JAc207nYr9aidg_AjsN1p3D"
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
       }
     },
-    "preview": {
-      "extends": "base",
-      "distribution": "internal",
-      "ios": { "simulator": false }
-    },
     "production": {
-      "extends": "base",
       "autoIncrement": true
     }
   },

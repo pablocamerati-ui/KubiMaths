@@ -153,12 +153,12 @@ export const misionExponencial3m: Mission = {
     },
     {
       id: 'x3-08',
-      habilidad: 'Lineal versus exponencial',
+      habilidad: 'Crecimiento por duplicación',
       enunciado: 'En un reto, el día 1 se ahorra $1 y cada día se ahorra el doble que el día anterior. ¿Cuánto se ahorra el día 15?',
       prefijo: '$',
       opciones: [
         { id: 'a', valor: 32768, porQue: 'Ese es el monto del día 16: el día 1 ya se ahorra $1 = 2⁰.' },
-        { id: 'b', valor: 30, porQue: 'Sumaste 2 cada día. Duplicar es multiplicar por 2.' },
+        { id: 'b', valor: 29, porQue: 'Sumaste 2 cada día (1 + 14 · 2). Duplicar es multiplicar por 2.' },
         { id: 'c', valor: 16384 },
         { id: 'd', valor: 8192, porQue: 'Ese es el monto del día 14.' },
       ],

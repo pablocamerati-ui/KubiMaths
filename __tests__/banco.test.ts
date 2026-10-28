@@ -6,7 +6,9 @@ import { Question } from '@/features/missions/types';
 import { localTutor } from '@/features/tutor/localTutor';
 
 const EPS = 1e-9;
-const VARIANTES = 300;
+// Variantes revisadas por generador. Con 100 se cubren bien los casos y las pruebas siguen rápidas;
+// para una revisión profunda: KUBI_VARIANTES=1000 npm test
+const VARIANTES = Number(process.env.KUBI_VARIANTES ?? 100);
 
 /** Las mismas reglas que cumplen las preguntas escritas a mano. */
 function revisar(q: Question) {

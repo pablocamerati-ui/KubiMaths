@@ -39,6 +39,12 @@
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#F7F8FF"
+    },
+    "extra": {
+      "supabase": {
+        "url": "https://zmtjylyqgtkbsrzpsmio.supabase.co",
+        "publishableKey": "sb_publishable_GMA7urG5JAc207nYr9aidg_AjsN1p3D"
+      }
     }
   }
 }

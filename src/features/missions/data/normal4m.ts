@@ -16,7 +16,7 @@ export const misionNormal4m: Mission = {
     {
       id: 'n4-01',
       habilidad: 'Regla 68-95-99,7',
-      enunciado: 'Los puntajes de una prueba siguen una distribución normal con media 500 y desviación estándar 100. ¿Qué porcentaje de estudiantes obtiene entre 400 y 600 puntos?',
+      enunciado: 'Los puntajes de una prueba siguen una distribución normal con media 500 y desviación estándar 100. ¿Qué porcentaje aproximado de estudiantes obtiene entre 400 y 600 puntos?',
       unidad: '%',
       opciones: [
         { id: 'a', valor: 68 },
@@ -149,7 +149,7 @@ export const misionNormal4m: Mission = {
         'Por eso divide los datos en dos mitades iguales.',
         'Bajo la media queda el 50 %.',
       ],
-      pista: 'La curva normal es simétrica respecto de la media.',
+      pista: 'Piensa en dónde está la media en la curva y en cómo se reparte el área total.',
     },
     {
       id: 'n4-08',

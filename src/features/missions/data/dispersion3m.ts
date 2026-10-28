@@ -62,7 +62,7 @@ export const misionDispersion3m: Mission = {
     {
       id: 'd3-03',
       habilidad: 'Varianza',
-      enunciado: '¿Cuál es la varianza de los datos 1, 3, 5 y 7?',
+      enunciado: '¿Cuál es la varianza de los datos 1, 3, 5 y 7, considerados como población (dividiendo por n)?',
       opciones: [
         { id: 'a', valor: 5 },
         { id: 'b', valor: 20, porQue: 'Esa es la suma de los cuadrados. Falta dividir por la cantidad de datos.' },
@@ -101,7 +101,7 @@ export const misionDispersion3m: Mission = {
     {
       id: 'd3-05',
       habilidad: 'Desviación estándar',
-      enunciado: '¿Cuál es la desviación estándar de los datos 2, 4, 4, 4, 5, 5, 7 y 9?',
+      enunciado: '¿Cuál es la desviación estándar de los datos 2, 4, 4, 4, 5, 5, 7 y 9, considerados como población?',
       opciones: [
         { id: 'a', valor: 4, porQue: 'Esa es la varianza. Falta sacar la raíz.' },
         { id: 'b', valor: 5, porQue: 'Ese es el promedio.' },

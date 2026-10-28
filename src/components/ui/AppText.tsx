@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { StyleSheet, Text, TextProps, TextStyle, View } from 'react-native';
+import { Platform, StyleSheet, Text, TextProps, TextStyle, View } from 'react-native';
 
 import { colors, fonts } from '@/theme';
 
@@ -25,6 +25,21 @@ const SUPERINDICES: Record<string, string> = {
   '⁻': '−', '⁺': '+', 'ˣ': 'x', 'ⁿ': 'n', 'ʰ': 'h',
 };
 const TRAMOS = new RegExp(`([${Object.keys(SUPERINDICES).join('')}]+)`, 'u');
+
+/**
+ * Símbolos que Sora no trae (π, √, ≈, ∞). El teléfono los dibuja con su fuente
+ * del sistema, que se ve más chica: los escribimos con esa fuente a propósito,
+ * con el mismo grosor y un poco más grandes, para que calcen con el texto.
+ */
+const SIMBOLOS = /([π√≈∞]+)/u;
+const ESCALA_SIMBOLO = 1.12;
+const PESOS: Record<string, TextStyle['fontWeight']> = {
+  [fonts.regular]: '400',
+  [fonts.semibold]: '600',
+  [fonts.bold]: '700',
+  [fonts.extrabold]: '800',
+};
+const FUENTE_SISTEMA = Platform.select({ ios: 'System', android: 'sans-serif', default: 'system-ui' });
 const ESCALA = 0.62;
 const SUBIDA = 0.42;
 
@@ -40,8 +55,34 @@ export function partirExponentes(texto: string): { texto: string; exponente: boo
     );
 }
 
+/** Escribe π, √, ≈ y ∞ con la fuente del sistema, ajustada al tamaño y grosor del texto. */
+function conSimbolos(texto: string, estilo: TextStyle, clave: string): ReactNode {
+  if (!SIMBOLOS.test(texto)) return texto;
+  const tamano = estilo.fontSize ?? 16;
+  return texto
+    .split(SIMBOLOS)
+    .filter((t) => t.length > 0)
+    .map((t, i) =>
+      SIMBOLOS.test(t) ? (
+        <Text
+          key={`${clave}-${i}`}
+          style={{
+            fontFamily: FUENTE_SISTEMA,
+            fontWeight: PESOS[String(estilo.fontFamily)] ?? '600',
+            fontSize: Math.round(tamano * ESCALA_SIMBOLO),
+          }}
+        >
+          {t}
+        </Text>
+      ) : (
+        t
+      )
+    );
+}
+
 function conExponentes(children: ReactNode, estilo: TextStyle): ReactNode {
-  if (typeof children !== 'string' || !TRAMOS.test(children)) return children;
+  if (typeof children !== 'string') return children;
+  if (!TRAMOS.test(children)) return conSimbolos(children, estilo, 's');
   const tamano = estilo.fontSize ?? 16;
   return partirExponentes(children).map((parte, i) =>
     parte.exponente ? (
@@ -58,7 +99,7 @@ function conExponentes(children: ReactNode, estilo: TextStyle): ReactNode {
         </Text>
       </View>
     ) : (
-      parte.texto
+      conSimbolos(parte.texto, estilo, String(i))
     )
   );
 }
@@ -71,7 +112,7 @@ export function AppText({
   ...rest
 }: TextProps & { variant?: Variant; color?: string }) {
   const estilo = StyleSheet.flatten([VARIANTS[variant], { color }, style]) as TextStyle;
-  const tieneExponentes = typeof children === 'string' && TRAMOS.test(children);
+  const tieneExponentes = typeof children === 'string' && (TRAMOS.test(children) || SIMBOLOS.test(children));
   return (
     <Text
       {...rest}

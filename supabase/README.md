@@ -8,7 +8,7 @@
 - `src/lib/supabase.ts`: cliente; la sesión se guarda en el teléfono (AsyncStorage).
 - `src/features/progress/supabaseProgressRepository.ts`: lee y guarda el progreso en esas tablas.
 - `src/features/progress/syncProgressRepository.ts`: primero el teléfono, después la nube. La app abre al instante con lo local, luego une lo de la nube (se queda con lo mejor de cada lado) y sube cada cambio en orden. Sin conexión, sigue funcionando y sincroniza la próxima vez.
-- `.env.local`: URL y clave publicable de kubi-dev. Sin ese archivo, la app funciona solo en el teléfono.
+- `app.json` → `expo.extra.supabase`: URL y clave publicable de kubi-dev (la clave publicable es pública por diseño). Las variables `EXPO_PUBLIC_SUPABASE_URL` y `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` de un `.env.local`, si existen, tienen prioridad.
 
 ## Paso pendiente en el panel de Supabase (lo haces tú)
 

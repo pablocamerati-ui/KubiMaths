@@ -82,7 +82,7 @@ export const misionFinanzas3m: Mission = {
         { id: 'a', valor: 25, porQue: 'No baja lo mismo que suben los precios: tu dinero alcanza para 1/1,25 de lo anterior.' },
         { id: 'b', valor: 20 },
         { id: 'c', valor: 80, porQue: '80 % es lo que todavía puedes comprar. Se pregunta cuánto baja.' },
-        { id: 'd', valor: 75, porQue: 'Restaste 25 a 100. Hay que dividir por 1,25.' },
+        { id: 'd', valor: 75, porQue: '75 % sería lo que aún puedes comprar si restaras 25 a 100, pero no es así: hay que dividir por 1,25 y puedes comprar el 80 %.' },
       ],
       correcta: 'b',
       calcular: () => (1 - 100 / 125) * 100,
@@ -116,7 +116,7 @@ export const misionFinanzas3m: Mission = {
     {
       id: 'f3-06',
       habilidad: 'Ahorro con interés compuesto',
-      enunciado: 'Ahorras $50.000 en una cuenta que paga 2 % mensual de interés compuesto. ¿Cuánto tendrás al cabo de 3 meses?',
+      enunciado: 'Ahorras $50.000 en una cuenta que paga 2 % mensual de interés compuesto. ¿Cuánto tendrás al cabo de 3 meses (sin redondear)?',
       prefijo: '$',
       opciones: [
         { id: 'a', valor: 53000, porQue: 'Ese es el resultado con interés simple. En el compuesto, cada mes gana interés sobre lo acumulado.' },
@@ -155,8 +155,8 @@ export const misionFinanzas3m: Mission = {
     },
     {
       id: 'f3-08',
-      habilidad: 'Comparar inversiones',
-      enunciado: 'Un banco ofrece invertir $100.000 al 9 % anual compuesto durante 3 años. ¿Cuánto dinero tendrás al final?',
+      habilidad: 'Interés compuesto en varios años',
+      enunciado: 'Un banco ofrece invertir $100.000 al 9 % anual compuesto durante 3 años. ¿Cuánto dinero tendrás al final (sin redondear)?',
       prefijo: '$',
       opciones: [
         { id: 'a', valor: 127000, porQue: 'Ese es el resultado con interés simple.' },

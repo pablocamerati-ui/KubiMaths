@@ -48,4 +48,4 @@ El número de build sube solo (`autoIncrement`). Para cambiar la versión visibl
 
 ## Variables de Supabase en la compilación
 
-`.env.local` no se sube a EAS. Por eso `eas.json` repite la URL y la **clave publicable** de kubi-dev en el perfil `base`. Esa clave es pública por diseño (la seguridad la dan las políticas por fila); nunca pongas ahí la clave `service_role` ni la de Anthropic.
+La URL y la **clave publicable** de kubi-dev están en `app.json` (`expo.extra.supabase`), así que la compilación las incluye sin pasos extra. Esa clave es pública por diseño (la seguridad la dan las políticas por fila); nunca pongas en la app la clave `service_role` ni la de Anthropic.

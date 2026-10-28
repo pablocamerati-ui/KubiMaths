@@ -134,7 +134,7 @@ export const misionLogaritmica4m: Mission = {
     {
       id: 'l4-07',
       habilidad: 'Escala de pH',
-      enunciado: 'El pH se calcula como pH = −log[H⁺]. Si la concentración de iones es [H⁺] = 10⁻⁴, ¿cuál es el pH?',
+      enunciado: 'El pH se calcula como pH = −log[H⁺]. Si la concentración de iones hidrógeno es [H⁺] = 10⁻⁴ mol/L, ¿cuál es el pH?',
       opciones: [
         { id: 'a', valor: 4 },
         { id: 'b', valor: -4, porQue: 'El signo menos de la fórmula vuelve positivo el resultado.' },
@@ -155,7 +155,7 @@ export const misionLogaritmica4m: Mission = {
       habilidad: 'Escala de Richter',
       enunciado: 'En la escala de Richter, cada punto multiplica la amplitud de la onda por 10. ¿Cuántas veces mayor es la amplitud de un sismo de magnitud 8 que la de uno de magnitud 6?',
       opciones: [
-        { id: 'a', valor: 2, porQue: 'La escala es logarítmica: no se restan las magnitudes directamente.' },
+        { id: 'a', valor: 2, porQue: 'La diferencia de magnitudes (2) es el exponente: la amplitud se multiplica por 10², no por 2.' },
         { id: 'b', valor: 20, porQue: 'Dos puntos son 10 · 10, no 10 · 2.' },
         { id: 'c', valor: 8 / 6, texto: '≈ 1,33', porQue: 'No se dividen las magnitudes: se compara 10⁸ con 10⁶.' },
         { id: 'd', valor: 100 },

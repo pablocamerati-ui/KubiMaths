@@ -31,7 +31,7 @@ export const misionInecuaciones3m: Mission = {
       opciones: [
         { id: 'a', valor: menor(4), texto: 'x < 4', porQue: 'Dividiste por 3, que es positivo: el sentido no cambia.' },
         { id: 'b', valor: mayor(4), texto: 'x > 4' },
-        { id: 'c', valor: mayor(2 / 3), texto: 'x > 2/3', porQue: 'Restaste 5 en vez de sumarlo: 3x > 12.' },
+        { id: 'c', valor: mayor(2 / 3), texto: 'x > 2/3', porQue: 'Restaste 5 en vez de sumarlo y quedó 3x > 2. Lo correcto es 3x > 12.' },
         { id: 'd', valor: mayor(12), texto: 'x > 12', porQue: 'Falta dividir por 3.' },
       ],
       correcta: 'b',
@@ -169,7 +169,7 @@ export const misionInecuaciones3m: Mission = {
     {
       id: 'i3-08',
       habilidad: 'Inecuaciones en contexto',
-      enunciado: 'Catalina tiene notas 5,0 y 4,5. ¿Qué nota mínima necesita en la tercera para que su promedio sea al menos 5,0?',
+      enunciado: 'Catalina tiene notas 5,0 y 4,5. ¿Qué nota mínima necesita en la tercera para que su promedio, sin aproximar, sea al menos 5,0?',
       opciones: [
         { id: 'a', valor: 5, porQue: 'Con un 5,0 el promedio es 4,83. La tercera nota debe compensar el 4,5.' },
         { id: 'b', valor: 5.5 },
