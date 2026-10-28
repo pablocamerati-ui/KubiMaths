@@ -1,6 +1,6 @@
 import { COURSES } from '../missions/catalog';
 import { MissionResult } from '../missions/engine';
-import { PRACTICA_ID, PREGUNTAS_POR_PRACTICA } from '../practice/practica';
+import { esPractica, PRACTICA_ID, PRACTICA_M2_ID, PREGUNTAS_POR_PRACTICA } from '../practice/practica';
 import { applyResult } from './applyResult';
 import { Racha, StudentProgress } from './types';
 
@@ -52,13 +52,13 @@ export const LOGROS: Logro[] = [
     id: 'primera-mision',
     titulo: 'Primera misión',
     descripcion: 'Completa tu primera misión.',
-    cumple: (p) => Object.entries(p.misiones).some(([id, m]) => id !== PRACTICA_ID && m.completada),
+    cumple: (p) => Object.entries(p.misiones).some(([id, m]) => !esPractica(id) && m.completada),
   },
   {
     id: 'mision-perfecta',
     titulo: 'Misión perfecta',
     descripcion: 'Responde bien las 8 preguntas de una misión.',
-    cumple: (p) => Object.entries(p.misiones).some(([id, m]) => id !== PRACTICA_ID && m.mejorCorrectas >= 8),
+    cumple: (p) => Object.entries(p.misiones).some(([id, m]) => !esPractica(id) && m.mejorCorrectas >= 8),
   },
   {
     id: 'racha-3',
@@ -82,7 +82,9 @@ export const LOGROS: Logro[] = [
     id: 'practica-80',
     titulo: 'PAES sobre 80 %',
     descripcion: `Logra ${Math.ceil(PREGUNTAS_POR_PRACTICA * 0.8)} de ${PREGUNTAS_POR_PRACTICA} en una práctica PAES.`,
-    cumple: (p) => (p.misiones[PRACTICA_ID]?.mejorCorrectas ?? 0) >= PREGUNTAS_POR_PRACTICA * 0.8,
+    cumple: (p) =>
+      Math.max(p.misiones[PRACTICA_ID]?.mejorCorrectas ?? 0, p.misiones[PRACTICA_M2_ID]?.mejorCorrectas ?? 0) >=
+      PREGUNTAS_POR_PRACTICA * 0.8,
   },
 ];
 

@@ -9,7 +9,7 @@ import { XpChip } from '@/components/ui/Chips';
 import { CheckIcon, ClockIcon, FlameIcon, LockIcon, PlayIcon, UserIcon } from '@/components/ui/icons';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { COURSES, getCourse, LevelStatus, levelStatuses, MapLevel } from '@/features/missions/catalog';
-import { PRACTICA_ID } from '@/features/practice/practica';
+import { PRACTICAS } from '@/features/practice/practica';
 import { diaLocal, rachaVigente } from '@/features/progress/logros';
 import { useProgress } from '@/features/progress/ProgressContext';
 import { colors, fonts, radius, spacing } from '@/theme';
@@ -35,6 +35,8 @@ export default function Mapa() {
   const completadas = statuses.filter((s) => s === 'completada').length;
   const actual = statuses.findIndex((s) => s === 'disponible' || s === 'proximamente');
   const kubiRow = actual === -1 ? levels.length - 1 : actual;
+  const prueba = course.id === '3m' || course.id === '4m' ? 'M2' : 'M1';
+  const practica = PRACTICAS[prueba];
   const racha = rachaVigente(progress.racha, diaLocal(new Date(Date.now())));
 
   const centers = levels.map((_, i) => ({ x: PATH_W / 2 + OFFSETS[i % OFFSETS.length], y: i * ROW_H + NODE / 2 }));
@@ -114,19 +116,19 @@ export default function Mapa() {
       <Pressable
         testID="boton-practica"
         accessibilityRole="button"
-        accessibilityLabel="Práctica PAES: 15 preguntas mezcladas de todos los ejes"
+        accessibilityLabel={`${practica.nombre}: 15 preguntas mezcladas de todos los ejes`}
         onPress={() =>
-          router.push({ pathname: '/desafio/[misionId]', params: { misionId: PRACTICA_ID, semilla: String(Date.now()) } })
+          router.push({ pathname: '/desafio/[misionId]', params: { misionId: practica.id, semilla: String(Date.now()) } })
         }
         style={({ pressed }) => [styles.practica, pressed && styles.practicaPressed]}
       >
         <View style={styles.practicaIcono}>
           <AppText variant="caption" color={colors.azulOscuro} style={styles.practicaIconoTexto}>
-            PAES
+            {prueba}
           </AppText>
         </View>
         <View style={{ flex: 1 }}>
-          <AppText variant="label">Práctica PAES M1</AppText>
+          <AppText variant="label">{practica.nombre}</AppText>
           <AppText variant="caption" color={colors.textoSecundario}>
             15 preguntas mezcladas de todos los ejes
           </AppText>

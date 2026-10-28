@@ -10,7 +10,7 @@ import { CheckIcon, HeartIcon, XpIcon } from '@/components/ui/icons';
 import { LogroBanner } from '@/components/ui/LogroBanner';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { getMission } from '@/features/missions/catalog';
-import { decodificarResumen, PRACTICA_ID } from '@/features/practice/practica';
+import { decodificarResumen, esPractica, PRACTICAS, pruebaDe } from '@/features/practice/practica';
 import { colors, radius, spacing } from '@/theme';
 
 type Params = {
@@ -31,7 +31,7 @@ const idsLogros = (p: Params) => (p.logros ? p.logros.split(',').filter(Boolean)
 /** Pantalla 4 — Recompensas */
 export default function Recompensas() {
   const p = useLocalSearchParams<Params>();
-  if (p.misionId === PRACTICA_ID) return <ResultadosPractica p={p} />;
+  if (esPractica(p.misionId)) return <ResultadosPractica p={p} />;
   const correctas = Number(p.correctas ?? 0);
   const total = Number(p.total ?? 0);
   const xp = Number(p.xp ?? 0);
@@ -198,7 +198,10 @@ function ResultadosPractica({ p }: { p: Params }) {
         </View>
 
         <AppText variant="caption" color={colors.textoSecundario} style={[styles.centerText, styles.nota]}>
-          Práctica de repaso con preguntas de 7.º básico a 1.º medio. No es un ensayo oficial ni entrega puntaje PAES.
+          {pruebaDe(p.misionId) === 'M2'
+            ? 'Práctica de repaso con preguntas de 3.º y 4.º medio.'
+            : 'Práctica de repaso con preguntas de 7.º básico a 2.º medio.'}{' '}
+          No es un ensayo oficial ni entrega puntaje PAES.
         </AppText>
 
         <View style={styles.actions}>
@@ -206,7 +209,7 @@ function ResultadosPractica({ p }: { p: Params }) {
             label="Otra práctica"
             testID="boton-otra-practica"
             onPress={() =>
-              router.replace({ pathname: '/desafio/[misionId]', params: { misionId: PRACTICA_ID, semilla: String(Date.now()) } })
+              router.replace({ pathname: '/desafio/[misionId]', params: { misionId: PRACTICAS[pruebaDe(p.misionId)].id, semilla: String(Date.now()) } })
             }
           />
           <Button label="Volver al mapa" variant="secondary" onPress={() => router.dismissTo('/mapa')} testID="boton-continuar-mapa" />

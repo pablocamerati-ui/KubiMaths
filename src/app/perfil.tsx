@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/Button';
 import { BackIcon, FlameIcon, MedalIcon, XpIcon } from '@/components/ui/icons';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { ALL_LEVELS, COURSES, getCourse, getMission } from '@/features/missions/catalog';
-import { PRACTICA_ID, PREGUNTAS_POR_PRACTICA } from '@/features/practice/practica';
+import { PRACTICAS, PREGUNTAS_POR_PRACTICA } from '@/features/practice/practica';
 import { diaLocal, LOGROS, rachaVigente, validarAlias } from '@/features/progress/logros';
 import { useProgress } from '@/features/progress/ProgressContext';
 import { supabase } from '@/lib/supabase';
@@ -28,7 +28,6 @@ export default function Perfil() {
   const completadas = ALL_LEVELS.filter((l) => l.missionId && progress.misiones[l.missionId]?.completada).length;
   const logros = progress.logros ?? {};
   const obtenidos = LOGROS.filter((l) => logros[l.id]).length;
-  const practica = progress.misiones[PRACTICA_ID];
 
   const guardar = () => {
     const r = validarAlias(texto);
@@ -244,17 +243,33 @@ export default function Perfil() {
           );
         })}
 
-        {/* Práctica PAES */}
-        <View style={[styles.card, styles.practica]} accessible testID="perfil-practica"
-          accessibilityLabel={practica ? `Práctica PAES: mejor resultado ${practica.mejorCorrectas} de ${PREGUNTAS_POR_PRACTICA}, ${practica.intentos} prácticas` : 'Práctica PAES: aún no la haces'}
-        >
-          <AppText variant="label">Práctica PAES M1</AppText>
-          <AppText variant="caption" color={colors.textoSecundario}>
-            {practica
-              ? `Mejor resultado: ${practica.mejorCorrectas}/${PREGUNTAS_POR_PRACTICA} · ${practica.intentos} ${practica.intentos === 1 ? 'práctica' : 'prácticas'}`
-              : 'Aún no haces una práctica. La encuentras en el mapa.'}
-          </AppText>
-        </View>
+        {/* Prácticas PAES */}
+        {(['M1', 'M2'] as const).map((prueba) => {
+          const pr = progress.misiones[PRACTICAS[prueba].id];
+          const nombre = PRACTICAS[prueba].nombre;
+          return (
+            <View
+              key={prueba}
+              style={[styles.card, styles.practica]}
+              accessible
+              testID={`perfil-practica-${prueba}`}
+              accessibilityLabel={
+                pr
+                  ? `${nombre}: mejor resultado ${pr.mejorCorrectas} de ${PREGUNTAS_POR_PRACTICA}, ${pr.intentos} ${pr.intentos === 1 ? 'práctica' : 'prácticas'}`
+                  : `${nombre}: aún no la haces`
+              }
+            >
+              <AppText variant="label">{nombre}</AppText>
+              <AppText variant="caption" color={colors.textoSecundario}>
+                {pr
+                  ? `Mejor resultado: ${pr.mejorCorrectas}/${PREGUNTAS_POR_PRACTICA} · ${pr.intentos} ${pr.intentos === 1 ? 'práctica' : 'prácticas'}`
+                  : prueba === 'M1'
+                    ? 'Aún no la haces. La encuentras en el mapa de 7.º básico a 2.º medio.'
+                    : 'Aún no la haces. La encuentras en el mapa de 3.º y 4.º medio.'}
+              </AppText>
+            </View>
+          );
+        })}
 
         <AppText variant="caption" color={colors.textoSecundario} style={styles.nota}>
           {supabase

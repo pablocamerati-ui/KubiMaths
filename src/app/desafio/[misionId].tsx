@@ -20,7 +20,7 @@ import { createMissionState, missionReducer, summarize } from '@/features/missio
 import { textoOpcion } from '@/features/missions/format';
 import { Mission } from '@/features/missions/types';
 import { useProgress } from '@/features/progress/ProgressContext';
-import { codificarResumen, crearPractica, Practica, PRACTICA_ID, resumenPorEje } from '@/features/practice/practica';
+import { codificarResumen, crearPractica, esPractica, Practica, pruebaDe, resumenPorEje } from '@/features/practice/practica';
 import { localTutor } from '@/features/tutor/localTutor';
 import { tutorIA } from '@/features/tutor/tutor';
 import { RespuestaTutor } from '@/features/tutor/tutorIA';
@@ -32,7 +32,7 @@ const LETRAS = ['A', 'B', 'C', 'D'];
 export default function Desafio() {
   const { misionId, semilla } = useLocalSearchParams<{ misionId: string; semilla?: string }>();
   const practica = useMemo(
-    () => (misionId === PRACTICA_ID ? crearPractica(Number(semilla) || 1) : undefined),
+    () => (esPractica(misionId) ? crearPractica(Number(semilla) || 1, pruebaDe(misionId)) : undefined),
     [misionId, semilla]
   );
   // Cada intento sortea 8 preguntas del banco de la misión (fijas + variantes).

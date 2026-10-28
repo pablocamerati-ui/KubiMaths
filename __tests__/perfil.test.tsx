@@ -203,13 +203,14 @@ describe('pantalla de perfil', () => {
     expect(screen.getByLabelText('XP total: 100')).toBeTruthy();
     expect(screen.getByLabelText('Días de racha: 2')).toBeTruthy();
     expect(screen.getByLabelText('Mejor racha: 2')).toBeTruthy();
-    expect(screen.getByLabelText('Misiones: 1/24')).toBeTruthy();
+    expect(screen.getByLabelText('Misiones: 1/36')).toBeTruthy();
     expect(screen.getByLabelText('Logro Primera misión: obtenido')).toBeTruthy();
     expect(screen.getByLabelText('Logro Misión perfecta: obtenido')).toBeTruthy();
     expect(screen.getByLabelText(/^Logro Racha de 3 días: pendiente/)).toBeTruthy();
     expect(screen.getByLabelText('Números enteros: completada, mejor resultado 8 de 8, 1 intento')).toBeTruthy();
     expect(screen.getByLabelText('Fracciones y decimales: sin jugar')).toBeTruthy();
-    expect(screen.getByLabelText('Práctica PAES: aún no la haces')).toBeTruthy();
+    expect(screen.getByLabelText('Práctica PAES M1: aún no la haces')).toBeTruthy();
+    expect(screen.getByLabelText('Práctica PAES M2: aún no la haces')).toBeTruthy();
 
     await act(async () => {
       fireEvent.changeText(screen.getByTestId('input-alias'), 'ana@correo.cl');

@@ -2,12 +2,35 @@ import { ALL_MISSIONS, courseOfMission } from '../missions/catalog';
 import { Mission, Question } from '../missions/types';
 
 /**
- * Práctica estilo PAES M1: preguntas mezcladas de todos los cursos,
- * agrupadas por los cuatro ejes de la prueba. No es un ensayo oficial ni
- * entrega un puntaje PAES: muestra el porcentaje de logro por eje.
+ * Práctica estilo PAES: preguntas mezcladas, agrupadas por los cuatro ejes de
+ * la prueba. M1 usa 7.º básico a 2.º medio; M2, 3.º y 4.º medio.
+ * No es un ensayo oficial ni entrega un puntaje PAES: muestra el logro por eje.
  */
 
+export type Prueba = 'M1' | 'M2';
+
 export const PRACTICA_ID = 'practica-paes';
+export const PRACTICA_M2_ID = 'practica-paes-m2';
+
+export const PRACTICAS: Record<Prueba, { id: string; nombre: string; cursos: string[]; cantidades: Record<Eje, number> }> = {
+  M1: {
+    id: PRACTICA_ID,
+    nombre: 'Práctica PAES M1',
+    cursos: ['7b', '8b', '1m', '2m'],
+    cantidades: { numeros: 5, algebra: 5, geometria: 3, probabilidad: 2 },
+  },
+  M2: {
+    id: PRACTICA_M2_ID,
+    nombre: 'Práctica PAES M2',
+    cursos: ['3m', '4m'],
+    cantidades: { numeros: 3, algebra: 5, geometria: 3, probabilidad: 4 },
+  },
+};
+
+/** ¿Este id es una práctica PAES (M1 o M2)? */
+export const esPractica = (id: string | undefined) => id === PRACTICA_ID || id === PRACTICA_M2_ID;
+
+export const pruebaDe = (id: string | undefined): Prueba => (id === PRACTICA_M2_ID ? 'M2' : 'M1');
 
 export type Eje = 'numeros' | 'algebra' | 'geometria' | 'probabilidad';
 
@@ -58,17 +81,18 @@ export type Practica = {
 };
 
 /** Arma una práctica de 15 preguntas, balanceada por eje y en orden aleatorio. */
-export function crearPractica(semilla: number): Practica {
+export function crearPractica(semilla: number, prueba: Prueba = 'M1'): Practica {
+  const config = PRACTICAS[prueba];
   const rnd = aleatorio(semilla);
   const ejes: Record<string, Eje> = {};
   const cursos: Record<string, string> = {};
   const elegidas: Question[] = [];
 
   for (const eje of EJES) {
-    const candidatas = ALL_MISSIONS.filter((m) => ejeDeMision(m) === eje.id).flatMap((m) =>
-      m.preguntas.map((q) => ({ q, curso: courseOfMission(m.id)?.nombre ?? m.nivel }))
-    );
-    for (const { q, curso } of barajar(candidatas, rnd).slice(0, eje.cantidad)) {
+    const candidatas = ALL_MISSIONS.filter(
+      (m) => ejeDeMision(m) === eje.id && config.cursos.includes(courseOfMission(m.id)?.id ?? '')
+    ).flatMap((m) => m.preguntas.map((q) => ({ q, curso: courseOfMission(m.id)?.nombre ?? m.nivel })));
+    for (const { q, curso } of barajar(candidatas, rnd).slice(0, config.cantidades[eje.id])) {
       elegidas.push(q);
       ejes[q.id] = eje.id;
       cursos[q.id] = curso;
@@ -77,9 +101,9 @@ export function crearPractica(semilla: number): Practica {
 
   return {
     mision: {
-      id: PRACTICA_ID,
-      titulo: 'Práctica PAES',
-      nivel: 'PAES M1',
+      id: config.id,
+      titulo: config.nombre,
+      nivel: `PAES ${prueba}`,
       unidad: 'Repaso',
       preguntas: barajar(elegidas, rnd),
       corazonesIniciales: 0,

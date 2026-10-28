@@ -1,3 +1,15 @@
+import { misionAnalitica3m } from './data/analitica3m';
+import { misionBinomial4m } from './data/binomial4m';
+import { misionComplejos4m } from './data/complejos4m';
+import { misionCondicional3m } from './data/condicional3m';
+import { misionDispersion3m } from './data/dispersion3m';
+import { misionExponencial3m } from './data/exponencial3m';
+import { misionFinanzas3m } from './data/finanzas3m';
+import { misionInecuaciones3m } from './data/inecuaciones3m';
+import { misionLogaritmica4m } from './data/logaritmica4m';
+import { misionNormal4m } from './data/normal4m';
+import { misionPotencia4m } from './data/potencia4m';
+import { misionRevolucion4m } from './data/revolucion4m';
 import { misionAlgebra1m } from './data/algebra1m';
 import { misionAlgebra7b } from './data/algebra7b';
 import { misionCuadratica2m } from './data/cuadratica2m';
@@ -32,7 +44,7 @@ export type MapLevel = {
   missionId: string | null;
 };
 
-export type CourseId = '7b' | '8b' | '1m' | '2m';
+export type CourseId = '7b' | '8b' | '1m' | '2m' | '3m' | '4m';
 
 /** Un curso tiene su propio mapa de aventuras. */
 export type Course = {
@@ -103,6 +115,34 @@ export const COURSES: Course[] = [
       level('2m-n6', misionProbabilidad2m),
     ],
   },
+  {
+    id: '3m',
+    nombre: '3.º medio',
+    corto: '3.º M',
+    descripcion: 'Finanzas, datos y modelos',
+    levels: [
+      level('3m-n1', misionFinanzas3m),
+      level('3m-n2', misionInecuaciones3m),
+      level('3m-n3', misionExponencial3m),
+      level('3m-n4', misionAnalitica3m),
+      level('3m-n5', misionDispersion3m),
+      level('3m-n6', misionCondicional3m),
+    ],
+  },
+  {
+    id: '4m',
+    nombre: '4.º medio',
+    corto: '4.º M',
+    descripcion: 'Complejos, funciones y distribuciones',
+    levels: [
+      level('4m-n1', misionComplejos4m),
+      level('4m-n2', misionPotencia4m),
+      level('4m-n3', misionLogaritmica4m),
+      level('4m-n4', misionRevolucion4m),
+      level('4m-n5', misionBinomial4m),
+      level('4m-n6', misionNormal4m),
+    ],
+  },
 ];
 
 export const DEFAULT_COURSE: CourseId = '7b';
@@ -143,6 +183,18 @@ const MISSIONS: Record<string, Mission> = Object.fromEntries(
     misionEcuacion2m,
     misionTrigonometria2m,
     misionProbabilidad2m,
+    misionFinanzas3m,
+    misionInecuaciones3m,
+    misionExponencial3m,
+    misionAnalitica3m,
+    misionDispersion3m,
+    misionCondicional3m,
+    misionComplejos4m,
+    misionPotencia4m,
+    misionLogaritmica4m,
+    misionRevolucion4m,
+    misionBinomial4m,
+    misionNormal4m,
   ].map((m) => [m.id, m])
 );
 

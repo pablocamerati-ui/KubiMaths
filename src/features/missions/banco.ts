@@ -1,6 +1,8 @@
 import { aleatorio, barajar, Generador, generar } from './generadores/base';
 import { GENERADORES_1M } from './generadores/gen1m';
 import { GENERADORES_2M } from './generadores/gen2m';
+import { GENERADORES_3M } from './generadores/gen3m';
+import { GENERADORES_4M } from './generadores/gen4m';
 import { GENERADORES_7B } from './generadores/gen7b';
 import { GENERADORES_8B } from './generadores/gen8b';
 import { Mission, Question } from './types';
@@ -21,6 +23,8 @@ export const GENERADORES: Record<string, Generador[]> = {
   ...GENERADORES_8B,
   ...GENERADORES_1M,
   ...GENERADORES_2M,
+  ...GENERADORES_3M,
+  ...GENERADORES_4M,
 };
 
 export function generadoresDe(missionId: string): Generador[] {

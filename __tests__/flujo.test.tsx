@@ -220,6 +220,19 @@ describe('Navegación y primera misión jugable', () => {
     expect(screen.getByLabelText('Correctas: 8/8')).toBeTruthy();
   });
 
+  test('en 3.º y 4.º medio el mapa ofrece la práctica PAES M2', async () => {
+    await renderRouter(APP_DIR, { initialUrl: '/mapa' });
+    await tap('curso-4m');
+    expect(await screen.findByText('Complejos, funciones y distribuciones')).toBeTruthy();
+    expect(screen.getByLabelText('Misión 1: Números complejos. Disponible')).toBeTruthy();
+    await tap('curso-3m');
+    expect(await screen.findByText('Finanzas, datos y modelos')).toBeTruthy();
+    expect(screen.getByText('Práctica PAES M2')).toBeTruthy();
+    await tap('boton-practica');
+    expect(screen).toHavePathname('/desafio/practica-paes-m2');
+    expect(await screen.findByText(/PREGUNTA 1 DE 15 · [34]\.º MEDIO/)).toBeTruthy();
+  });
+
   test('misión inexistente muestra un mensaje y permite volver', async () => {
     await renderRouter(APP_DIR, { initialUrl: '/desafio/no-existe' });
     expect(await screen.findByText('No encontré esta misión.')).toBeTruthy();

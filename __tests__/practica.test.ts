@@ -70,3 +70,45 @@ describe('Práctica PAES', () => {
     expect(decodificarResumen('basura,numeros:x')).toEqual([]);
   });
 });
+
+describe('práctica PAES M2', () => {
+  const { ALL_MISSIONS: misiones, courseOfMission: cursoDe } = jest.requireActual('@/features/missions/catalog');
+  const prac = jest.requireActual('@/features/practice/practica');
+
+  test('usa solo preguntas de 3.º y 4.º medio, 15 en total, con el reparto por eje de M2', () => {
+    for (const semilla of [1, 2, 3, 99]) {
+      const p = prac.crearPractica(semilla, 'M2');
+      expect(p.mision.id).toBe(prac.PRACTICA_M2_ID);
+      expect(p.mision.titulo).toBe('Práctica PAES M2');
+      expect(p.mision.preguntas).toHaveLength(15);
+      const cursosValidos = new Set(['3.º medio', '4.º medio']);
+      for (const q of p.mision.preguntas) expect(cursosValidos.has(p.cursos[q.id])).toBe(true);
+      const conteo: Record<string, number> = {};
+      for (const q of p.mision.preguntas) conteo[p.ejes[q.id]] = (conteo[p.ejes[q.id]] ?? 0) + 1;
+      expect(conteo).toEqual({ numeros: 3, algebra: 5, geometria: 3, probabilidad: 4 });
+    }
+  });
+
+  test('M1 ya no incluye 3.º ni 4.º medio', () => {
+    const p = prac.crearPractica(7, 'M1');
+    for (const q of p.mision.preguntas) expect(['3.º medio', '4.º medio']).not.toContain(p.cursos[q.id]);
+  });
+
+  test('hay suficientes preguntas por eje en 3.º y 4.º medio', () => {
+    const porEje: Record<string, number> = {};
+    for (const m of misiones) {
+      if (!['3m', '4m'].includes(cursoDe(m.id)?.id)) continue;
+      const e = prac.ejeDeMision(m);
+      porEje[e] = (porEje[e] ?? 0) + m.preguntas.length;
+    }
+    for (const [eje, n] of Object.entries(prac.PRACTICAS.M2.cantidades)) expect(porEje[eje]).toBeGreaterThanOrEqual((n as number) * 3);
+  });
+
+  test('esPractica y pruebaDe', () => {
+    expect(prac.esPractica('practica-paes')).toBe(true);
+    expect(prac.esPractica('practica-paes-m2')).toBe(true);
+    expect(prac.esPractica('enteros-7b')).toBe(false);
+    expect(prac.pruebaDe('practica-paes-m2')).toBe('M2');
+    expect(prac.pruebaDe('practica-paes')).toBe('M1');
+  });
+});

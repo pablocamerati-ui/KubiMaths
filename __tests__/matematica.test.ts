@@ -120,8 +120,8 @@ describe('Mapa: desbloqueo de niveles', () => {
 });
 
 describe('Cursos', () => {
-  test('cada curso (7.º básico a 2.º medio) tiene seis misiones, con ids de nivel únicos', () => {
-    expect(COURSES.map((c) => c.id)).toEqual(['7b', '8b', '1m', '2m']);
+  test('cada curso (7.º básico a 4.º medio) tiene seis misiones, con ids de nivel únicos', () => {
+    expect(COURSES.map((c) => c.id)).toEqual(['7b', '8b', '1m', '2m', '3m', '4m']);
     for (const c of COURSES) {
       expect(c.levels).toHaveLength(6);
       expect(c.levels.every((l) => l.missionId != null)).toBe(true);
