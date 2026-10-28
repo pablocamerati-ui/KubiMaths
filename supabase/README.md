@@ -10,9 +10,11 @@
 - `src/features/progress/syncProgressRepository.ts`: primero el teléfono, después la nube. La app abre al instante con lo local, luego une lo de la nube (se queda con lo mejor de cada lado) y sube cada cambio en orden. Sin conexión, sigue funcionando y sincroniza la próxima vez.
 - `app.json` → `expo.extra.supabase`: URL y clave publicable de kubi-dev (la clave publicable es pública por diseño). Las variables `EXPO_PUBLIC_SUPABASE_URL` y `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` de un `.env.local`, si existen, tienen prioridad.
 
-## Paso pendiente en el panel de Supabase (lo haces tú)
+## Ajustes del panel de Supabase (28-10-2026)
 
-Activar **Authentication → Sign In / Providers → Allow anonymous sign-ins**. Mientras no esté activo, la app no puede crear cuentas y guarda solo en el teléfono (no se rompe).
+- **Authentication → Sign In / Providers → Allow anonymous sign-ins:** activado.
+- **Authentication → Rate Limits → anonymous users:** 150 por hora por IP (antes 30), para que un curso completo pueda entrar a la vez desde el wifi del colegio.
+- **Captcha para cuentas anónimas:** aún no; requiere integrarlo en la app antes de activarlo.
 
 ## Cuentas
 
