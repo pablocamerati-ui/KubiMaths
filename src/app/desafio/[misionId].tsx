@@ -21,6 +21,7 @@ import { textoOpcion } from '@/features/missions/format';
 import { Mission } from '@/features/missions/types';
 import { useProgress } from '@/features/progress/ProgressContext';
 import { codificarResumen, crearPractica, esPractica, Practica, pruebaDe, resumenPorEje } from '@/features/practice/practica';
+import { reproducir } from '@/features/sonido/sonidos';
 import { localTutor } from '@/features/tutor/localTutor';
 import { tutorIA } from '@/features/tutor/tutor';
 import { RespuestaTutor } from '@/features/tutor/tutorIA';
@@ -113,6 +114,7 @@ function DesafioJuego({ mission, practica, semilla }: { mission: Mission; practi
     Haptics.notificationAsync(
       correct ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Warning
     ).catch(() => undefined);
+    reproducir(correct ? 'acierto' : 'error');
     dispatch({ type: 'responder', option });
   };
 
@@ -177,7 +179,13 @@ function DesafioJuego({ mission, practica, semilla }: { mission: Mission; practi
         </AppText>
 
         <View style={styles.kubiRow}>
-          <Kubi expression={kubiExpression} size={96} animated={!answer} />
+          <Kubi
+            expression={kubiExpression}
+            size={96}
+            animated={!answer}
+            reaccion={answer ? (answer.correct ? 'salto' : 'sacudida') : undefined}
+            reaccionClave={answered}
+          />
           <SpeechBubble text={kubiDice} style={{ flex: 1 }} />
         </View>
 

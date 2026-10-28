@@ -33,7 +33,13 @@ export type KubiProps = {
   style?: StyleProp<ViewStyle>;
   /** Texto para lectores de pantalla. */
   accessibilityLabel?: string;
+  /** Reacción breve: salto al acertar, sacudida al fallar, fiesta al celebrar. */
+  reaccion?: Reaccion;
+  /** Cambia este valor para repetir la misma reacción (por ejemplo, el número de respuesta). */
+  reaccionClave?: string | number;
 };
+
+export type Reaccion = 'salto' | 'sacudida' | 'fiesta';
 
 const VIEW_W = 240;
 const VIEW_H = 270;
@@ -48,6 +54,8 @@ export function Kubi({
   animated = true,
   style,
   accessibilityLabel,
+  reaccion,
+  reaccionClave,
 }: KubiProps) {
   const pose = POSES[expression];
   const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
@@ -88,7 +96,55 @@ export function Kubi({
     };
   }, [animated, float]);
 
-  const translateY = float.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.025] });
+  // Reacciones: un valor de 0 a 1 por cada una.
+  const salto = useRef(new Animated.Value(0)).current;
+  const sacudida = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    if (!reaccion) return;
+    let anim: Animated.CompositeAnimation | undefined;
+    let cancelled = false;
+    AccessibilityInfo.isReduceMotionEnabled()
+      .then((reduce) => {
+        if (reduce || cancelled) return;
+        salto.setValue(0);
+        sacudida.setValue(0);
+        const saltar = (ms: number) =>
+          Animated.timing(salto, { toValue: 1, duration: ms, easing: Easing.out(Easing.quad), useNativeDriver: true });
+        const reiniciar = Animated.timing(salto, { toValue: 0, duration: 0, useNativeDriver: true });
+        anim =
+          reaccion === 'salto'
+            ? saltar(480)
+            : reaccion === 'sacudida'
+              ? Animated.timing(sacudida, { toValue: 1, duration: 520, easing: Easing.linear, useNativeDriver: true })
+              : Animated.sequence([
+                  Animated.parallel([
+                    saltar(520),
+                    Animated.timing(sacudida, { toValue: 1, duration: 520, useNativeDriver: true }),
+                  ]),
+                  reiniciar,
+                  saltar(460),
+                  reiniciar,
+                  saltar(420),
+                ]);
+        anim.start();
+      })
+      .catch(() => undefined);
+    return () => {
+      cancelled = true;
+      anim?.stop();
+    };
+  }, [reaccion, reaccionClave, salto, sacudida]);
+
+  const translateY = Animated.add(
+    float.interpolate({ inputRange: [0, 1], outputRange: [0, -size * 0.025] }),
+    salto.interpolate({ inputRange: [0, 0.45, 1], outputRange: [0, -size * 0.16, 0] })
+  );
+  const scale = salto.interpolate({ inputRange: [0, 0.12, 0.45, 0.85, 1], outputRange: [1, 0.93, 1.06, 0.98, 1] });
+  const rotate = sacudida.interpolate({
+    inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
+    outputRange: ['0deg', '-8deg', '7deg', '-4deg', '2deg', '0deg'],
+  });
   const height = (size * VIEW_H) / VIEW_W;
 
   const renderArm = (arm: Arm, key: string) => (
@@ -127,7 +183,7 @@ export function Kubi({
 
   return (
     <Animated.View
-      style={[{ width: size, height, transform: [{ translateY }] }, style]}
+      style={[{ width: size, height, transform: [{ translateY }, { scale }, { rotate }] }, style]}
       accessible
       accessibilityRole="image"
       accessibilityLabel={accessibilityLabel ?? `KUBI ${expression}`}

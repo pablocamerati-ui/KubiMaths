@@ -1,6 +1,6 @@
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Switch, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Kubi } from '@/components/kubi/Kubi';
@@ -12,12 +12,15 @@ import { ALL_LEVELS, COURSES, getCourse, getMission } from '@/features/missions/
 import { PRACTICAS, PREGUNTAS_POR_PRACTICA } from '@/features/practice/practica';
 import { diaLocal, LOGROS, rachaVigente, validarAlias } from '@/features/progress/logros';
 import { useProgress } from '@/features/progress/ProgressContext';
+import { cambiarAjustes, useAjustes } from '@/features/ajustes/ajustes';
+import { reproducir } from '@/features/sonido/sonidos';
 import { supabase } from '@/lib/supabase';
 import { colors, fonts, radius, spacing } from '@/theme';
 
 /** Pantalla 5 — Perfil del estudiante */
 export default function Perfil() {
   const { progress, setAlias } = useProgress();
+  const ajustes = useAjustes();
   const [editando, setEditando] = useState(!progress.alias);
   const [texto, setTexto] = useState(progress.alias ?? '');
   const [error, setError] = useState<string | null>(null);
@@ -271,6 +274,27 @@ export default function Perfil() {
           );
         })}
 
+        {/* Ajustes */}
+        <View style={[styles.card, styles.ajuste]}>
+          <View style={{ flex: 1 }}>
+            <AppText variant="label">Sonidos</AppText>
+            <AppText variant="caption" color={colors.textoSecundario}>
+              Sonidos breves al acertar y celebrar. Se callan si el iPhone está en silencio.
+            </AppText>
+          </View>
+          <Switch
+            testID="switch-sonido"
+            value={ajustes.sonido}
+            onValueChange={(sonido) => {
+              cambiarAjustes({ sonido });
+              if (sonido) reproducir('toque');
+            }}
+            trackColor={{ false: colors.bloqueado, true: colors.morado }}
+            thumbColor={colors.blanco}
+            accessibilityLabel="Sonidos"
+          />
+        </View>
+
         <AppText variant="caption" color={colors.textoSecundario} style={styles.nota}>
           {supabase
             ? 'Tu progreso se guarda en este teléfono y se respalda en la nube cuando hay conexión.'
@@ -347,5 +371,6 @@ const styles = StyleSheet.create({
   puntoMedio: { backgroundColor: colors.morado },
   puntoNo: { backgroundColor: colors.bloqueado },
   practica: { gap: 4 },
+  ajuste: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   nota: { textAlign: 'center' },
 });

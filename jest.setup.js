@@ -19,3 +19,9 @@ jest.mock('expo-haptics', () => ({
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
   ImpactFeedbackStyle: { Light: 'light', Medium: 'medium', Heavy: 'heavy' },
 }));
+
+// Audio simulado: registra qué se reproduce.
+jest.mock('expo-audio', () => ({
+  createAudioPlayer: jest.fn(() => ({ volume: 1, seekTo: jest.fn(() => Promise.resolve()), play: jest.fn(), remove: jest.fn() })),
+  setAudioModeAsync: jest.fn(() => Promise.resolve()),
+}));

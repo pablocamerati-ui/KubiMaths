@@ -10,6 +10,7 @@ import { CheckIcon, HeartIcon, XpIcon } from '@/components/ui/icons';
 import { LogroBanner } from '@/components/ui/LogroBanner';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { getMission } from '@/features/missions/catalog';
+import { useSonidoDeEntrada } from '@/features/sonido/sonidos';
 import { decodificarResumen, esPractica, PRACTICAS, pruebaDe } from '@/features/practice/practica';
 import { colors, radius, spacing } from '@/theme';
 
@@ -51,8 +52,10 @@ export default function Recompensas() {
           </Defs>
           <Circle cx={160} cy={160} r={160} fill="url(#aura)" />
         </Svg>
+        <SonidoDeEntrada nombre={completada ? 'celebracion' : null} conLogro={idsLogros(p).length > 0} />
         <Kubi
           expression={completada ? 'celebrando' : 'feliz'}
+          reaccion={completada ? 'fiesta' : undefined}
           size={220}
           accessibilityLabel={completada ? 'KUBI celebrando' : 'KUBI dándote ánimo'}
         />
@@ -139,7 +142,13 @@ function ResultadosPractica({ p }: { p: Params }) {
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <ScrollView contentContainerStyle={styles.practicaScroll} showsVerticalScrollIndicator={false}>
         <View style={styles.practicaHero}>
-          <Kubi expression={bien ? 'celebrando' : 'feliz'} size={150} accessibilityLabel={bien ? 'KUBI celebrando' : 'KUBI dándote ánimo'} />
+          <SonidoDeEntrada nombre={bien ? 'celebracion' : null} conLogro={idsLogros(p).length > 0} />
+          <Kubi
+            expression={bien ? 'celebrando' : 'feliz'}
+            reaccion={bien ? 'fiesta' : undefined}
+            size={150}
+            accessibilityLabel={bien ? 'KUBI celebrando' : 'KUBI dándote ánimo'}
+          />
         </View>
 
         <View style={styles.copy}>
@@ -217,6 +226,12 @@ function ResultadosPractica({ p }: { p: Params }) {
       </ScrollView>
     </SafeAreaView>
   );
+}
+
+/** Componente sin dibujo: suena al aparecer la pantalla. */
+function SonidoDeEntrada({ nombre, conLogro }: { nombre: 'celebracion' | null; conLogro: boolean }) {
+  useSonidoDeEntrada(nombre, conLogro);
+  return null;
 }
 
 function Stat({

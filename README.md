@@ -2,7 +2,7 @@
 
 App de matemáticas gamificada para estudiantes de 7.º básico a 4.º medio (incluida la preparación PAES), protagonizada por KUBI, el personaje oficial (ver `KUBI_CHARACTER.md`).
 
-**Contenido actual:** seis mapas de aventuras (7.º y 8.º básico, 1.º a 4.º medio) con 6 misiones cada uno y 3 corazones. Cada misión tiene un banco de 20 preguntas (8 escritas a mano y 12 variantes generadas con otros números) y en cada intento se sortean 8, así que repetir una misión no es memorizar respuestas. Cada misión completada desbloquea la siguiente de su curso. Además, la **Práctica PAES M1** (7.º básico a 2.º medio) y la **Práctica PAES M2** (3.º y 4.º medio) arman 15 preguntas mezcladas de los cuatro ejes (sin corazones) y muestran el logro por eje; no es un ensayo oficial ni entrega puntaje PAES. El **perfil** muestra el apodo, la XP, la racha de días seguidos, los logros (primera misión, misión perfecta, rachas de 3 y 7 días, curso completo y práctica PAES sobre 80 %) y el avance de cada misión. El progreso, el apodo, la racha y los logros quedan guardados en el teléfono y, con Supabase configurado (`.env.local`), también en la nube con una cuenta anónima (ver `supabase/README.md`).
+**Contenido actual:** seis mapas de aventuras (7.º y 8.º básico, 1.º a 4.º medio) con 6 misiones cada uno y 3 corazones. Cada misión tiene un banco de 20 preguntas (8 escritas a mano y 12 variantes generadas con otros números) y en cada intento se sortean 8, así que repetir una misión no es memorizar respuestas. Cada misión completada desbloquea la siguiente de su curso. Además, la **Práctica PAES M1** (7.º básico a 2.º medio) y la **Práctica PAES M2** (3.º y 4.º medio) arman 15 preguntas mezcladas de los cuatro ejes (sin corazones) y muestran el logro por eje; no es un ensayo oficial ni entrega puntaje PAES. KUBI salta al acertar, se sacude al fallar y celebra al terminar, con sonidos breves que se pueden apagar en el perfil (y que respetan el modo silencio). El **perfil** muestra el apodo, la XP, la racha de días seguidos, los logros (primera misión, misión perfecta, rachas de 3 y 7 días, curso completo y práctica PAES sobre 80 %) y el avance de cada misión. El progreso, el apodo, la racha y los logros quedan guardados en el teléfono y, con Supabase configurado (`.env.local`), también en la nube con una cuenta anónima (ver `supabase/README.md`).
 
 ## Ejecutar en tu iPhone con Expo Go
 
@@ -23,6 +23,7 @@ Si el iPhone no logra conectarse (redes de oficina o con aislamiento de equipos)
 | Comando | Para qué |
 |---|---|
 | `npx expo start` | Servidor de desarrollo |
+| `npm run sonidos` | Regenera los sonidos de KUBI (`assets/sonidos`) |
 | `npm test` | Pruebas (lógica matemática, motor de misión, navegación y flujo completo) |
 | `npm run typecheck` | Verificación de TypeScript |
 
@@ -61,3 +62,7 @@ __tests__/                Pruebas
 2. Registrarla en `MISSIONS` y asignar su `missionId` en `MAP_LEVELS` (`catalog.ts`).
 3. Agregar al menos dos generadores de variantes en `generadores/gen<curso>.ts` (cada uno arma la pregunta, la respuesta y tres errores típicos con su explicación).
 4. `npm test` comprueba automáticamente que cada respuesta correcta coincida con el cálculo, también en 300 variantes de cada generador.
+
+## Beta en iPhone (TestFlight)
+
+Ver `docs/TESTFLIGHT.md`: perfiles de EAS listos y pasos con tu cuenta de Apple Developer.

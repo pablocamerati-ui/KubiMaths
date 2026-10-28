@@ -7,13 +7,18 @@ import {
 } from '@expo-google-fonts/sora';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { cargarAjustes } from '@/features/ajustes/ajustes';
 import { ProgressProvider } from '@/features/progress/ProgressContext';
 import { colors } from '@/theme';
 
 export default function RootLayout() {
+  useEffect(() => {
+    cargarAjustes();
+  }, []);
   const [fontsLoaded] = useFonts({ Sora_400Regular, Sora_600SemiBold, Sora_700Bold, Sora_800ExtraBold });
 
   if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: colors.fondo }} />;

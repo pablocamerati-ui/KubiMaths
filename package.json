@@ -8,6 +8,7 @@
     "@supabase/supabase-js": "^2.118.0",
     "expo": "~58.0.16",
     "expo-asset": "~58.0.17",
+    "expo-audio": "~58.0.9",
     "expo-constants": "~58.0.12",
     "expo-font": "~58.0.9",
     "expo-haptics": "~58.0.7",
@@ -39,7 +40,8 @@
     "web": "expo start --web",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "icons": "node scripts/render-icons.mjs"
+    "icons": "node scripts/render-icons.mjs",
+    "sonidos": "node scripts/render-sounds.mjs"
   },
   "private": true,
   "jest": {
